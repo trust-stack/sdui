@@ -8,11 +8,11 @@ export const HarvestFormScreen: FormScreen = {
     sections: [
         {
             validationId: 'whereWhen',
-            title: 'Harvest location and time',
+            title: 'Harvest Location and Time',
             items: [
                 {
                     type: FormItemType.SUB_HEADER,
-                    subHeader: 'Harvest location',
+                    subHeader: 'Harvest Location',
                     expand: 12,
                     compact: 12,
                 },
@@ -28,12 +28,12 @@ export const HarvestFormScreen: FormScreen = {
                 },
                 {
                     type: FormItemType.SUB_HEADER,
-                    subHeader: 'Harvest time',
+                    subHeader: 'Event Time',
                     expand: 12,
                     compact: 12,
                 },
                 {
-                    validationId: 'whereWhen.dateTime',
+                    validationId: 'whereWhen.eventTime',
                     type: FormItemType.DATE_TIME_PICKER,
                     inputLabel: 'Event Time',
                     expand: 12,
@@ -43,7 +43,7 @@ export const HarvestFormScreen: FormScreen = {
         },
         {
             validationId: 'what',
-            title: 'What was harvested',
+            title: 'What Was Harvested',
             items: [
                 {
                     validationId: 'what.tradeItem',
@@ -134,7 +134,7 @@ export const HarvestFormScreen: FormScreen = {
                 required: true,
                 message: 'Location is required',
             },
-            dateTime: {
+            eventTime: {
                 type: 'date',
                 required: true,
                 message: 'Event time is required',
