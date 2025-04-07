@@ -1,6 +1,6 @@
 import { GridItem, Select, Toggle } from '../components';
 
-export type FormScreen = {
+export type Form = {
     readonly header: FormHeader;
     readonly sections: FormSection[];
     readonly validation: FormValidation;

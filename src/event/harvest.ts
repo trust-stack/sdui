@@ -1,7 +1,7 @@
-import { FormItemType, FormScreen } from './types';
+import { Form, FormItemType } from './types';
 
-// TODO: Implement API endpoint to return form screen configuration
-export const HarvestFormScreen: FormScreen = {
+// TODO: Implement API endpoint to return form configuration
+export const HarvestForm: Form = {
     header: {
         title: 'Harvest Event',
     },

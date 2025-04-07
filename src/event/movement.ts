@@ -1,7 +1,7 @@
-import { FormItemType, FormScreen } from './types';
+import { Form, FormItemType } from './types';
 
-// TODO: Implement API endpoint to return form screen configuration
-export const MovementFormScreen: FormScreen = {
+// TODO: Implement API endpoint to return form configuration
+export const MovementForm: Form = {
     header: {
         title: 'Movement Event',
     },
