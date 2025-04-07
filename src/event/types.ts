@@ -42,7 +42,7 @@ export type FormValidation = {
           };
 };
 
-type FormValidationItem = {
+export type FormValidationItem = {
     readonly type: 'array' | 'date' | 'mixed' | 'number' | 'object' | 'string';
     readonly required?: boolean;
     readonly message?: string;
