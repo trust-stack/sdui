@@ -1,3 +1,5 @@
+// TOOD: Move all this to a separate package (e.g. @truststack/ui-kit).
+// And remove yup package dependency
 import { FormValidation, FormValidationItem } from './types';
 import * as yup from 'yup';
 
