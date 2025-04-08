@@ -7,6 +7,7 @@
     "license": "UNLICENSED",
     "main": "src/index.js",
     "scripts": {
+        "codegen:json-schema": "ts-node --project ./tsconfig.json -r tsconfig-paths/register ./scripts/codegen-json-schema.ts",
         "format": "prettier --write \"src/**/*.ts\"",
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
     },
