@@ -1,8 +1,8 @@
 import { YStack } from 'tamagui';
-import { FormItemDto, FormItemType } from '../../event/dtos';
+import { FormItem, FormItemType } from '../../event/types';
 import { Form } from './Form';
 
-export const buildFormItems = (items: FormItemDto[]) => {
+export const buildFormItems = (items: FormItem[]) => {
     return (
         <YStack gap={4}>
             {items.map((item, itemIndex) => {

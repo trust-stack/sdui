@@ -1,14 +1,13 @@
 // TOOD: Move all this to a separate package (e.g. @truststack/ui-kit).
 // And remove yup package dependency
-import { FormValidation, FormValidationItemDto } from '../../event/dtos';
+import { FormValidation, FormValidationItem } from '../../event/types';
 import * as yup from 'yup';
 
 function isFormValidationItem(
     value: FormValidation[string],
-): value is FormValidationItemDto {
+): value is FormValidationItem {
     return (
-        'type' in value &&
-        typeof (<FormValidationItemDto>value).type === 'string'
+        'type' in value && typeof (<FormValidationItem>value).type === 'string'
     );
 }
 
@@ -34,7 +33,7 @@ export const buildValidationSchema = (
     return yup.object().shape(schema);
 };
 
-const buildValidationField = (field: FormValidationItemDto): yup.AnySchema => {
+const buildValidationField = (field: FormValidationItem): yup.AnySchema => {
     let validator: yup.AnySchema;
 
     switch (field.type) {
