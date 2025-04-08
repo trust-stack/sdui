@@ -1,6 +1,5 @@
-import { Form, FormItemType } from './types';
+import { Form } from 'src/schema/generated';
 
-// TODO: Implement API endpoint to return form configuration
 export const HarvestForm: Form = {
     header: {
         title: 'Harvest Event',
@@ -11,30 +10,27 @@ export const HarvestForm: Form = {
             title: 'Harvest Location and Time',
             items: [
                 {
-                    type: FormItemType.SUB_HEADER,
+                    type: 'SUB_HEADER',
                     subHeader: 'Harvest Location',
                     expand: 12,
                     compact: 12,
                 },
                 {
                     validationId: 'whereWhen.location',
-                    type: FormItemType.SELECT,
-                    select: {
-                        label: 'Location',
-                        options: [], // TODO
-                    },
+                    type: 'SELECT_SUB_LOCATION',
+                    inputLabel: 'Paddock',
                     expand: 12,
                     compact: 12,
                 },
                 {
-                    type: FormItemType.SUB_HEADER,
+                    type: 'SUB_HEADER',
                     subHeader: 'Event Time',
                     expand: 12,
                     compact: 12,
                 },
                 {
                     validationId: 'whereWhen.eventTime',
-                    type: FormItemType.DATE_TIME_PICKER,
+                    type: 'DATE_TIME_PICKER',
                     inputLabel: 'Event Time',
                     expand: 12,
                     compact: 12,
@@ -47,17 +43,14 @@ export const HarvestForm: Form = {
             items: [
                 {
                     validationId: 'what.tradeItem',
-                    type: FormItemType.SELECT,
-                    select: {
-                        label: 'Trade Item',
-                        options: [], // TODO
-                    },
+                    type: 'SELECT_TRADE_ITEM',
+                    inputLabel: 'Trade Item',
                     expand: 6,
                     compact: 12,
                 },
                 {
                     validationId: 'what.quantity',
-                    type: FormItemType.NUMERICAL_INPUT,
+                    type: 'INPUT_NUMERICAL',
                     inputLabel: 'Quantity',
                     expand: 6,
                     compact: 12,
@@ -69,14 +62,14 @@ export const HarvestForm: Form = {
             title: 'Storage or dispatch',
             items: [
                 {
-                    type: FormItemType.SUB_HEADER,
+                    type: 'SUB_HEADER',
                     subHeader: 'Storing on farm or dispatching?',
                     expand: 12,
                     compact: 12,
                 },
                 {
                     validationId: 'storageDispatch.option',
-                    type: FormItemType.TOGGLE,
+                    type: 'TOGGLE',
                     toggle: {
                         options: [
                             {
@@ -94,11 +87,8 @@ export const HarvestForm: Form = {
                                 items: [
                                     {
                                         validationId: 'storageDispatch.storage',
-                                        type: FormItemType.SELECT,
-                                        select: {
-                                            label: 'Storage',
-                                            options: [], // TODO
-                                        },
+                                        type: 'SELECT_SUB_LOCATION',
+                                        inputLabel: 'Storage',
                                         expand: 12,
                                         compact: 12,
                                     },
@@ -109,11 +99,8 @@ export const HarvestForm: Form = {
                                 items: [
                                     {
                                         validationId: 'storageDispatch.partner',
-                                        type: FormItemType.SELECT,
-                                        select: {
-                                            label: 'Trade Partner',
-                                            options: [], // TODO
-                                        },
+                                        type: 'SELECT_PARTNER',
+                                        inputLabel: 'Trade Partner',
                                         expand: 12,
                                         compact: 12,
                                     },

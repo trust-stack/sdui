@@ -1,6 +1,5 @@
-import { Form, FormItemType } from './types';
+import { Form } from 'src/schema/generated';
 
-// TODO: Implement API endpoint to return form configuration
 export const DispatchForm: Form = {
     header: {
         title: 'Dispatch Event',
@@ -11,46 +10,40 @@ export const DispatchForm: Form = {
             title: 'Event Location and Time',
             items: [
                 {
-                    type: FormItemType.SUB_HEADER,
+                    type: 'SUB_HEADER',
                     subHeader: 'Where was the product dispatched from?',
                     expand: 12,
                     compact: 12,
                 },
                 {
                     validationId: 'whereWhen.sourceStorage',
-                    type: FormItemType.SELECT,
-                    select: {
-                        label: 'Storage',
-                        options: [], // TODO
-                    },
+                    type: 'SELECT_SUB_LOCATION',
+                    inputLabel: 'Storage',
                     expand: 12,
                     compact: 12,
                 },
                 {
-                    type: FormItemType.SUB_HEADER,
+                    type: 'SUB_HEADER',
                     subHeader: 'Where was the product dispatched to?',
                     expand: 12,
                     compact: 12,
                 },
                 {
                     validationId: 'whereWhen.destinationPartner',
-                    type: FormItemType.SELECT,
-                    select: {
-                        label: 'Trade Partner',
-                        options: [], // TODO
-                    },
+                    type: 'SELECT_PARTNER',
+                    inputLabel: 'Trade Partner',
                     expand: 12,
                     compact: 12,
                 },
                 {
-                    type: FormItemType.SUB_HEADER,
+                    type: 'SUB_HEADER',
                     subHeader: 'Event Time',
                     expand: 12,
                     compact: 12,
                 },
                 {
                     validationId: 'whereWhen.eventTime',
-                    type: FormItemType.DATE_TIME_PICKER,
+                    type: 'DATE_TIME_PICKER',
                     inputLabel: 'Event Time',
                     expand: 12,
                     compact: 12,
@@ -63,14 +56,14 @@ export const DispatchForm: Form = {
             items: [
                 {
                     validationId: 'what.tradeItemUri',
-                    type: FormItemType.TEXT_INPUT,
+                    type: 'INPUT_TEXT',
                     inputLabel: 'Trade Item ID',
                     expand: 6,
                     compact: 12,
                 },
                 {
                     validationId: 'what.quantity',
-                    type: FormItemType.NUMERICAL_INPUT,
+                    type: 'INPUT_NUMERICAL',
                     inputLabel: 'Quantity',
                     expand: 6,
                     compact: 12,
