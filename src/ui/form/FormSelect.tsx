@@ -9,5 +9,5 @@ export type FormSelectProps<TFormFields extends FieldValues> = {
 export function FormSelect<TFormFields extends FieldValues>({
     ...props
 }: FormSelectProps<TFormFields>) {
-    return null;
+    return <></>;
 }

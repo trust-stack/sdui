@@ -9,5 +9,5 @@ export type FormInputProps<TFormFields extends FieldValues> = {
 export function FormInput<TFormFields extends FieldValues>({
     ...props
 }: FormInputProps<TFormFields>) {
-    return null;
+    return <></>;
 }

@@ -1,6 +1,4 @@
-// TOOD: Move all this to a separate package (e.g. @truststack/ui-kit).
-// And remove yup package dependency
-import { FormValidation, FormValidationItem } from '../../event/types';
+import { FormValidation, FormValidationItem } from 'src/schema/generated';
 import * as yup from 'yup';
 
 function isFormValidationItem(
@@ -96,14 +94,6 @@ const buildValidationField = (field: FormValidationItem): yup.AnySchema => {
                 ? buildValidationField(field.when.otherwise)
                 : undefined,
         });
-    }
-
-    if (field.test) {
-        validator = validator.test(
-            field.test.name,
-            field.test.message,
-            field.test.test,
-        );
     }
 
     return validator;

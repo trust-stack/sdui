@@ -1,6 +1,6 @@
-import { Form as FormDto } from '../../event/types';
-import { Form } from '../form/Form';
+import { Form as FormDto } from 'src/schema/generated';
 import { buildFormItems } from '../form/build-form-items';
+import { Form } from '../form/Form';
 import { PagerForm } from './PagerForm';
 
 export const buildPagerForm = (form: FormDto) => {

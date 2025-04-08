@@ -9,5 +9,5 @@ export type FormNumericalInputProps<TFormFields extends FieldValues> = {
 export function FormNumericalInput<TFormFields extends FieldValues>({
     ...props
 }: FormNumericalInputProps<TFormFields>) {
-    return null;
+    return <></>;
 }

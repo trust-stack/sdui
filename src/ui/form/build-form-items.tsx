@@ -1,5 +1,5 @@
 import { YStack } from 'tamagui';
-import { FormItem, FormItemType } from '../../event/types';
+import { FormItem } from 'src/schema/generated';
 import { Form } from './Form';
 
 export const buildFormItems = (items: FormItem[]) => {
@@ -9,24 +9,27 @@ export const buildFormItems = (items: FormItem[]) => {
                 const key = `form-item-${itemIndex}`;
 
                 switch (item.type) {
-                    case FormItemType.SUB_HEADER:
+                    case 'SUB_HEADER':
                         return (
                             <Form.Subheader key={key}>
                                 {item.subHeader}
                             </Form.Subheader>
                         );
 
-                    case FormItemType.SELECT:
+                    // TODO: Add select components for these types
+                    case 'SELECT_LOCATION':
+                    case 'SELECT_PARTNER':
+                    case 'SELECT_SUB_LOCATION':
+                    case 'SELECT_TRADE_ITEM':
                         return (
                             <Form.Select
                                 key={key}
-                                label={item.select.label}
+                                label={item.inputLabel}
                                 id={item.validationId}
-                                // TODO: Add options
                             />
                         );
 
-                    case FormItemType.TEXT_INPUT:
+                    case 'INPUT_TEXT':
                         return (
                             <Form.Input
                                 key={key}
@@ -35,7 +38,7 @@ export const buildFormItems = (items: FormItem[]) => {
                             />
                         );
 
-                    case FormItemType.NUMERICAL_INPUT:
+                    case 'INPUT_NUMERICAL':
                         return (
                             <Form.NumericalInput
                                 key={key}
@@ -44,7 +47,7 @@ export const buildFormItems = (items: FormItem[]) => {
                             />
                         );
 
-                    case FormItemType.DATE_TIME_PICKER:
+                    case 'DATE_TIME_PICKER':
                         return (
                             <Form.DateTimePicker
                                 key={key}

@@ -9,5 +9,5 @@ export type FormDateTimePickerProps<TFormFields extends FieldValues> = {
 export function FormDateTimePicker<TFormFields extends FieldValues>({
     ...props
 }: FormDateTimePickerProps<TFormFields>) {
-    return null;
+    return <></>;
 }
