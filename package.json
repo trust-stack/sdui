@@ -25,6 +25,9 @@
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/swagger": "^8.1.0",
     "express": "4.21.2",
+    "react": "^18.3.1",
+    "react-hook-form": "^7.55.0",
+    "tamagui": "^1.121.8",
     "tsup": "^8.4.0",
     "yup": "^0.32.9"
   },
