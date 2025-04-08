@@ -1,6 +1,6 @@
 // TOOD: Move all this to a separate package (e.g. @truststack/ui-kit).
 // And remove yup package dependency
-import { FormValidation, FormValidationItemDto } from './dtos';
+import { FormValidation, FormValidationItemDto } from '../../event/dtos';
 import * as yup from 'yup';
 
 function isFormValidationItem(
