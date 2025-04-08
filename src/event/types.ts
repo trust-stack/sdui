@@ -22,7 +22,6 @@ export type FormItem = {
     readonly validationId?: string;
     readonly subHeader?: string;
     readonly inputLabel?: string;
-    readonly select?: Select;
     readonly toggle?: FormToggle;
 } & GridItem;
 

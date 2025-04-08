@@ -1,0 +1,15 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "string",
+    "enum": [
+        "DATE_TIME_PICKER",
+        "INPUT_NUMERICAL",
+        "INPUT_TEXT",
+        "SELECT_LOCATION",
+        "SELECT_PARTNER",
+        "SELECT_SUB_LOCATION",
+        "SELECT_TRADE_ITEM",
+        "SUB_HEADER",
+        "TOGGLE"
+    ]
+}

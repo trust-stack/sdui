@@ -1,0 +1,42 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "options": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "label": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "required": ["label", "value"]
+            }
+        },
+        "conditionalItems": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "description": "Must match one of the toggle's option values"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "form-item.json"
+                        }
+                    }
+                },
+                "required": ["value", "items"]
+            }
+        }
+    },
+    "required": ["options"]
+}

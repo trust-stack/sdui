@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "$ref": "form-item-type.json"
+        },
+        "validationId": {
+            "type": "string"
+        },
+        "subHeader": {
+            "type": "string"
+        },
+        "inputLabel": {
+            "type": "string"
+        },
+        "toggle": {
+            "$ref": "form-toggle.json"
+        },
+        "colSpan": {
+            "type": "number"
+        },
+        "rowSpan": {
+            "type": "number"
+        }
+    },
+    "required": ["type"]
+}
