@@ -4,7 +4,7 @@ import { FormValidation, FormValidationItem } from './types';
 import * as yup from 'yup';
 
 function isFormValidationItem(
-    value: FormValidation[string]
+    value: FormValidation[string],
 ): value is FormValidationItem {
     return (
         'type' in value && typeof (<FormValidationItem>value).type === 'string'
@@ -12,7 +12,7 @@ function isFormValidationItem(
 }
 
 export const buildValidationSchema = (
-    validation: FormValidation
+    validation: FormValidation,
 ): yup.ObjectSchema<Record<string, yup.AnySchema>> => {
     const schema: Record<string, yup.AnySchema> = {};
 
@@ -67,7 +67,7 @@ const buildValidationField = (field: FormValidationItem): yup.AnySchema => {
             validator = (validator as yup.StringSchema).min(field.min);
         } else if (field.type === 'array') {
             validator = (validator as yup.ArraySchema<yup.AnySchema>).min(
-                field.min
+                field.min,
             );
         }
     }
@@ -79,7 +79,7 @@ const buildValidationField = (field: FormValidationItem): yup.AnySchema => {
             validator = (validator as yup.StringSchema).max(field.max);
         } else if (field.type === 'array') {
             validator = (validator as yup.ArraySchema<yup.AnySchema>).max(
-                field.max
+                field.max,
             );
         }
     }
@@ -102,7 +102,7 @@ const buildValidationField = (field: FormValidationItem): yup.AnySchema => {
         validator = validator.test(
             field.test.name,
             field.test.message,
-            field.test.test
+            field.test.test,
         );
     }
 
