@@ -17,10 +17,10 @@
         "toggle": {
             "$ref": "form-toggle.json"
         },
-        "colSpan": {
+        "expanded": {
             "type": "number"
         },
-        "rowSpan": {
+        "compact": {
             "type": "number"
         }
     },

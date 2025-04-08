@@ -25,8 +25,8 @@ export export interface FormItem {
   subHeader?: string;
   inputLabel?: string;
   toggle?: FormToggle;
-  colSpan?: number;
-  rowSpan?: number;
+  expanded?: number;
+  compact?: number;
   [k: string]: unknown;
 }
 export interface FormToggle {
@@ -75,8 +75,8 @@ export interface FormItem1 {
   subHeader?: string;
   inputLabel?: string;
   toggle?: FormToggle;
-  colSpan?: number;
-  rowSpan?: number;
+  expanded?: number;
+  compact?: number;
   [k: string]: unknown;
 }
 
@@ -102,8 +102,8 @@ export interface FormItem {
   subHeader?: string;
   inputLabel?: string;
   toggle?: FormToggle;
-  colSpan?: number;
-  rowSpan?: number;
+  expanded?: number;
+  compact?: number;
   [k: string]: unknown;
 }
 export interface FormToggle {
@@ -185,8 +185,8 @@ export interface FormItem {
   subHeader?: string;
   inputLabel?: string;
   toggle?: FormToggle1;
-  colSpan?: number;
-  rowSpan?: number;
+  expanded?: number;
+  compact?: number;
   [k: string]: unknown;
 }
 export interface FormToggle1 {
@@ -344,8 +344,8 @@ export interface FormItem {
   subHeader?: string;
   inputLabel?: string;
   toggle?: FormToggle;
-  colSpan?: number;
-  rowSpan?: number;
+  expanded?: number;
+  compact?: number;
   [k: string]: unknown;
 }
 export interface FormToggle {
