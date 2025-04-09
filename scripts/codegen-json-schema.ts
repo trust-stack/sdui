@@ -33,8 +33,10 @@ async function generateJsonSchemaTypes() {
                 },
             );
 
+            console.log({ typescript });
+
             // Add export statement and append to combined types
-            combinedTypes += `export ${typescript}\n\n`;
+            combinedTypes += `${typescript}\n\n`;
 
             console.log(`Generated types for ${schemaFile}`);
         }

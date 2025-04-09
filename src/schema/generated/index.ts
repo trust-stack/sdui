@@ -1,4 +1,4 @@
-export export type FormItemType =
+export type FormItemType =
   | "DATE_TIME_PICKER"
   | "INPUT_NUMERICAL"
   | "INPUT_TEXT"
@@ -10,7 +10,7 @@ export export type FormItemType =
   | "TOGGLE";
 
 
-export export interface FormItem {
+export interface FormItem {
   type:
     | "DATE_TIME_PICKER"
     | "INPUT_NUMERICAL"
@@ -81,7 +81,7 @@ export interface FormItem1 {
 }
 
 
-export export interface FormSection {
+export interface FormSection {
   validationId: string;
   title: string;
   items: FormItem[];
@@ -139,7 +139,7 @@ export interface FormToggle {
 }
 
 
-export export interface FormToggle {
+export interface FormToggle {
   /**
    * @minItems 2
    */
@@ -222,7 +222,7 @@ export interface FormToggle1 {
 }
 
 
-export export interface FormValidationItem {
+export interface FormValidationItem {
   type: "array" | "date" | "mixed" | "number" | "object" | "string";
   required?: boolean;
   message?: string;
@@ -260,7 +260,7 @@ export export interface FormValidationItem {
 }
 
 
-export export interface FormValidation {
+export interface FormValidation {
   /**
    * This interface was referenced by `FormValidation`'s JSON-Schema definition
    * via the `patternProperty` ".*".
@@ -313,7 +313,7 @@ export interface FormValidationItem {
 }
 
 
-export export interface Form {
+export interface Form {
   header: {
     title: string;
     subHeader?: string;
