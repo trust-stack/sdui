@@ -1,5 +1,6 @@
-import { FieldValues, Path } from 'react-hook-form';
+import { Controller, FieldValues, Path } from 'react-hook-form';
 import { TextField, TextFieldProps } from '../TextField';
+import { useFormContext } from './context';
 
 export type FormInputProps<TFormFields extends FieldValues> = {
     readonly id: Path<TFormFields>;
@@ -8,7 +9,22 @@ export type FormInputProps<TFormFields extends FieldValues> = {
 
 // TODO: Implement placeholder component
 export function FormInput<TFormFields extends FieldValues>({
+    id,
     ...props
 }: FormInputProps<TFormFields>) {
-    return <TextField {...props} />;
+    const { control } = useFormContext<TFormFields>();
+
+    return (
+        <Controller
+            control={control}
+            name={id}
+            render={({ field }) => (
+                <TextField
+                    {...props}
+                    value={field?.value}
+                    onChange={field?.onChange}
+                />
+            )}
+        />
+    );
 }

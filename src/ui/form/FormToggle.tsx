@@ -1,5 +1,6 @@
-import { FieldValues, Path } from 'react-hook-form';
+import { Controller, FieldValues, Path } from 'react-hook-form';
 import { Toggle, ToggleProps } from '../Toggle';
+import { useFormContext } from './context';
 
 export type FormToggleProps<TFormFields extends FieldValues> = {
     readonly id: Path<TFormFields>;
@@ -8,7 +9,22 @@ export type FormToggleProps<TFormFields extends FieldValues> = {
 
 // TODO: Implement placeholder component
 export function FormToggle<TFormFields extends FieldValues>({
+    id,
     ...props
 }: FormToggleProps<TFormFields>) {
-    return <Toggle {...props} />;
+    const { control } = useFormContext<TFormFields>();
+
+    return (
+        <Controller
+            control={control}
+            name={id}
+            render={({ field }) => (
+                <Toggle
+                    {...props}
+                    value={field?.value}
+                    onChange={field?.onChange}
+                />
+            )}
+        />
+    );
 }

@@ -1,5 +1,6 @@
-import { FieldValues, Path } from 'react-hook-form';
+import { Controller, FieldValues, Path } from 'react-hook-form';
 import { DateTimePicker, DateTimePickerProps } from '../DateTimePicker';
+import { useFormContext } from './context';
 
 export type FormDateTimePickerProps<TFormFields extends FieldValues> = {
     readonly id: Path<TFormFields>;
@@ -8,7 +9,22 @@ export type FormDateTimePickerProps<TFormFields extends FieldValues> = {
 
 // TODO: Implement placeholder component
 export function FormDateTimePicker<TFormFields extends FieldValues>({
+    id,
     ...props
 }: FormDateTimePickerProps<TFormFields>) {
-    return <DateTimePicker {...props} />;
+    const { control } = useFormContext<TFormFields>();
+
+    return (
+        <Controller
+            control={control}
+            name={id}
+            render={({ field }) => (
+                <DateTimePicker
+                    {...props}
+                    value={field?.value}
+                    onChange={field?.onChange}
+                />
+            )}
+        />
+    );
 }

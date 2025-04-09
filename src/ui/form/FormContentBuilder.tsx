@@ -1,9 +1,10 @@
 import { YStack } from 'tamagui';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { FormItem, FormToggle } from 'src/schema/generated';
 import { FormToggleProps } from './FormToggle';
 import { Form } from './Form';
+import { useFormContext } from './context';
 
 type FormContentBuilderProps = {
     readonly items: FormItem[];
@@ -95,8 +96,9 @@ function RenderFormToggle<TFormFields extends FieldValues>({
     formToggle,
     ...props
 }: RenderFormToggleProps<TFormFields>) {
-    // TODO: Get value from 'id'
-    const [value, setValue] = useState<string>('');
+    const { watch } = useFormContext<TFormFields>();
+
+    const value = watch(id);
 
     const conditionalItem = useMemo(() => {
         return formToggle.conditionalItems.find((item) => item.value === value);
