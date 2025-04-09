@@ -2,7 +2,7 @@ export type FormSubmitButtonProps = {
     readonly onSubmit: VoidFunction;
 };
 
-// Placeholder component
+// TODO: Implement placeholder component
 export function FormSubmitButton({ ...props }: FormSubmitButtonProps) {
     return <></>;
 }

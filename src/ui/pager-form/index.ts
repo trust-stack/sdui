@@ -1,1 +1,1 @@
-export * from './build-pager-form';
+export * from './PagerFormBuilder';
