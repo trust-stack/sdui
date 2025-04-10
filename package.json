@@ -8,8 +8,8 @@
     "main": "src/index.ts",
     "scripts": {
         "codegen:json-schema": "ts-node --project ./tsconfig.json -r tsconfig-paths/register ./scripts/codegen-json-schema.ts",
-        "format": "prettier --write \"src/**/*.ts\"",
-        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+        "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+        "lint": "eslint \"{src,apps,libs,test}/**/*.{ts,tsx}\" --fix",
         "test": "vitest"
     },
     "dependencies": {
