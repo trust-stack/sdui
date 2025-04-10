@@ -17,8 +17,11 @@ export const DispatchForm: Form = {
                 },
                 {
                     validationId: 'whereWhen.sourceStorage',
-                    type: 'SELECT_SUB_LOCATION',
+                    type: 'SELECT',
                     inputLabel: 'Storage',
+                    select: {
+                        options: [],
+                    },
                     expanded: 12,
                     compact: 12,
                 },
@@ -30,8 +33,11 @@ export const DispatchForm: Form = {
                 },
                 {
                     validationId: 'whereWhen.destinationPartner',
-                    type: 'SELECT_PARTNER',
+                    type: 'SELECT',
                     inputLabel: 'Trade Partner',
+                    select: {
+                        options: [],
+                    },
                     expanded: 12,
                     compact: 12,
                 },

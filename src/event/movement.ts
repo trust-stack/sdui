@@ -17,8 +17,11 @@ export const MovementForm: Form = {
                 },
                 {
                     validationId: 'whereWhen.sourceStorage',
-                    type: 'SELECT_SUB_LOCATION',
+                    type: 'SELECT',
                     inputLabel: 'Source Storage',
+                    select: {
+                        options: [],
+                    },
                     expanded: 12,
                     compact: 12,
                 },
@@ -30,8 +33,11 @@ export const MovementForm: Form = {
                 },
                 {
                     validationId: 'whereWhen.destinationStorage',
-                    type: 'SELECT_SUB_LOCATION',
+                    type: 'SELECT',
                     inputLabel: 'Destination Storage',
+                    select: {
+                        options: [],
+                    },
                     expanded: 12,
                     compact: 12,
                 },

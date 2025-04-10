@@ -1,32 +1,23 @@
-export type FormItemType =
-  | "DATE_TIME_PICKER"
-  | "INPUT_NUMERICAL"
-  | "INPUT_TEXT"
-  | "SELECT_LOCATION"
-  | "SELECT_PARTNER"
-  | "SELECT_SUB_LOCATION"
-  | "SELECT_TRADE_ITEM"
-  | "SUB_HEADER"
-  | "TOGGLE";
+export type FormItemType = "DATE_TIME_PICKER" | "INPUT_NUMERICAL" | "INPUT_TEXT" | "SELECT" | "SUB_HEADER" | "TOGGLE";
 
 
 export interface FormItem {
-  type:
-    | "DATE_TIME_PICKER"
-    | "INPUT_NUMERICAL"
-    | "INPUT_TEXT"
-    | "SELECT_LOCATION"
-    | "SELECT_PARTNER"
-    | "SELECT_SUB_LOCATION"
-    | "SELECT_TRADE_ITEM"
-    | "SUB_HEADER"
-    | "TOGGLE";
+  type: "DATE_TIME_PICKER" | "INPUT_NUMERICAL" | "INPUT_TEXT" | "SELECT" | "SUB_HEADER" | "TOGGLE";
   validationId?: string;
   subHeader?: string;
   inputLabel?: string;
+  select?: FormSelect;
   toggle?: FormToggle;
   expanded?: number;
   compact?: number;
+  [k: string]: unknown;
+}
+export interface FormSelect {
+  options: {
+    label: string;
+    value: string;
+    [k: string]: unknown;
+  }[];
   [k: string]: unknown;
 }
 export interface FormToggle {
@@ -61,19 +52,11 @@ export interface FormToggle {
   [k: string]: unknown;
 }
 export interface FormItem1 {
-  type:
-    | "DATE_TIME_PICKER"
-    | "INPUT_NUMERICAL"
-    | "INPUT_TEXT"
-    | "SELECT_LOCATION"
-    | "SELECT_PARTNER"
-    | "SELECT_SUB_LOCATION"
-    | "SELECT_TRADE_ITEM"
-    | "SUB_HEADER"
-    | "TOGGLE";
+  type: "DATE_TIME_PICKER" | "INPUT_NUMERICAL" | "INPUT_TEXT" | "SELECT" | "SUB_HEADER" | "TOGGLE";
   validationId?: string;
   subHeader?: string;
   inputLabel?: string;
+  select?: FormSelect;
   toggle?: FormToggle;
   expanded?: number;
   compact?: number;
@@ -88,22 +71,22 @@ export interface FormSection {
   [k: string]: unknown;
 }
 export interface FormItem {
-  type:
-    | "DATE_TIME_PICKER"
-    | "INPUT_NUMERICAL"
-    | "INPUT_TEXT"
-    | "SELECT_LOCATION"
-    | "SELECT_PARTNER"
-    | "SELECT_SUB_LOCATION"
-    | "SELECT_TRADE_ITEM"
-    | "SUB_HEADER"
-    | "TOGGLE";
+  type: "DATE_TIME_PICKER" | "INPUT_NUMERICAL" | "INPUT_TEXT" | "SELECT" | "SUB_HEADER" | "TOGGLE";
   validationId?: string;
   subHeader?: string;
   inputLabel?: string;
+  select?: FormSelect;
   toggle?: FormToggle;
   expanded?: number;
   compact?: number;
+  [k: string]: unknown;
+}
+export interface FormSelect {
+  options: {
+    label: string;
+    value: string;
+    [k: string]: unknown;
+  }[];
   [k: string]: unknown;
 }
 export interface FormToggle {
@@ -133,6 +116,16 @@ export interface FormToggle {
      */
     value: string;
     items: FormItem[];
+    [k: string]: unknown;
+  }[];
+  [k: string]: unknown;
+}
+
+
+export interface FormSelect {
+  options: {
+    label: string;
+    value: string;
     [k: string]: unknown;
   }[];
   [k: string]: unknown;
@@ -171,22 +164,22 @@ export interface FormToggle {
   [k: string]: unknown;
 }
 export interface FormItem {
-  type:
-    | "DATE_TIME_PICKER"
-    | "INPUT_NUMERICAL"
-    | "INPUT_TEXT"
-    | "SELECT_LOCATION"
-    | "SELECT_PARTNER"
-    | "SELECT_SUB_LOCATION"
-    | "SELECT_TRADE_ITEM"
-    | "SUB_HEADER"
-    | "TOGGLE";
+  type: "DATE_TIME_PICKER" | "INPUT_NUMERICAL" | "INPUT_TEXT" | "SELECT" | "SUB_HEADER" | "TOGGLE";
   validationId?: string;
   subHeader?: string;
   inputLabel?: string;
+  select?: FormSelect;
   toggle?: FormToggle1;
   expanded?: number;
   compact?: number;
+  [k: string]: unknown;
+}
+export interface FormSelect {
+  options: {
+    label: string;
+    value: string;
+    [k: string]: unknown;
+  }[];
   [k: string]: unknown;
 }
 export interface FormToggle1 {
@@ -330,22 +323,22 @@ export interface FormSection {
   [k: string]: unknown;
 }
 export interface FormItem {
-  type:
-    | "DATE_TIME_PICKER"
-    | "INPUT_NUMERICAL"
-    | "INPUT_TEXT"
-    | "SELECT_LOCATION"
-    | "SELECT_PARTNER"
-    | "SELECT_SUB_LOCATION"
-    | "SELECT_TRADE_ITEM"
-    | "SUB_HEADER"
-    | "TOGGLE";
+  type: "DATE_TIME_PICKER" | "INPUT_NUMERICAL" | "INPUT_TEXT" | "SELECT" | "SUB_HEADER" | "TOGGLE";
   validationId?: string;
   subHeader?: string;
   inputLabel?: string;
+  select?: FormSelect;
   toggle?: FormToggle;
   expanded?: number;
   compact?: number;
+  [k: string]: unknown;
+}
+export interface FormSelect {
+  options: {
+    label: string;
+    value: string;
+    [k: string]: unknown;
+  }[];
   [k: string]: unknown;
 }
 export interface FormToggle {

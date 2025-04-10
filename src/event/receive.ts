@@ -17,8 +17,11 @@ export const ReceiveForm: Form = {
                 },
                 {
                     validationId: 'whereWhen.sourcePartner',
-                    type: 'SELECT_PARTNER',
+                    type: 'SELECT',
                     inputLabel: 'Source Partner',
+                    select: {
+                        options: [],
+                    },
                     expanded: 12,
                     compact: 12,
                 },
@@ -30,8 +33,11 @@ export const ReceiveForm: Form = {
                 },
                 {
                     validationId: 'whereWhen.storage',
-                    type: 'SELECT_SUB_LOCATION',
+                    type: 'SELECT',
                     inputLabel: 'Storage',
+                    select: {
+                        options: [],
+                    },
                     expanded: 12,
                     compact: 12,
                 },
@@ -56,8 +62,11 @@ export const ReceiveForm: Form = {
             items: [
                 {
                     validationId: 'what.tradeItem',
-                    type: 'SELECT_TRADE_ITEM',
+                    type: 'SELECT',
                     inputLabel: 'Trade Item',
+                    select: {
+                        options: [],
+                    },
                     expanded: 6,
                     compact: 12,
                 },

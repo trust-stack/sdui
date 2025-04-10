@@ -3,10 +3,6 @@ import { ReactNode, useMemo } from 'react';
 import { FieldValues, Path } from 'react-hook-form';
 import { FormItem, FormToggle } from 'src/schema/generated';
 import { Grid } from '../Grid';
-import { LocationSelect } from '../LocationSelect';
-import { PartnerSelect } from '../PartnerSelect';
-import { SubLocationSelect } from '../SubLocationSelect';
-import { TradeItemSelect } from '../TradeItemSelect';
 import { FormToggleProps } from './FormToggle';
 import { Form } from './Form';
 import { useFormContext } from './context';
@@ -43,39 +39,9 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                     </Form.Subheader>,
                                 );
 
-                            case 'SELECT_LOCATION':
+                            case 'SELECT':
                                 return gridItem(
-                                    <LocationSelect<TFormFields>
-                                        label={item.inputLabel}
-                                        id={
-                                            item.validationId as Path<TFormFields>
-                                        }
-                                    />,
-                                );
-
-                            case 'SELECT_PARTNER':
-                                return gridItem(
-                                    <PartnerSelect<TFormFields>
-                                        label={item.inputLabel}
-                                        id={
-                                            item.validationId as Path<TFormFields>
-                                        }
-                                    />,
-                                );
-
-                            case 'SELECT_SUB_LOCATION':
-                                return gridItem(
-                                    <SubLocationSelect<TFormFields>
-                                        label={item.inputLabel}
-                                        id={
-                                            item.validationId as Path<TFormFields>
-                                        }
-                                    />,
-                                );
-
-                            case 'SELECT_TRADE_ITEM':
-                                return gridItem(
-                                    <TradeItemSelect<TFormFields>
+                                    <Form.Select<TFormFields>
                                         label={item.inputLabel}
                                         id={
                                             item.validationId as Path<TFormFields>
