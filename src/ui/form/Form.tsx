@@ -32,7 +32,7 @@ const FormContent = styled(Stack, {
     gap: '$spacing.form_gap',
 });
 
-// TODO: Implement placeholder component
+// Placeholder component
 export const Form = withStaticProperties(Frame, {
     Content: FormContent,
     Props: FormContext.Provider,

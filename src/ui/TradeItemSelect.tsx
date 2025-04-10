@@ -7,7 +7,7 @@ export type TradeItemSelectProps<TFormFields extends FieldValues> = {
     readonly label: string;
 };
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function TradeItemSelect<TFormFields extends FieldValues>({
     id,
     ...props

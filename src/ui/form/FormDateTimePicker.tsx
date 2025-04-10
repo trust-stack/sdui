@@ -7,7 +7,7 @@ export type FormDateTimePickerProps<TFormFields extends FieldValues> = {
     readonly label: string;
 } & Omit<DateTimePickerProps, 'value' | 'onChange'>;
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function FormDateTimePicker<TFormFields extends FieldValues>({
     id,
     ...props

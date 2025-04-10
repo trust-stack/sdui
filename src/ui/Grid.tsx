@@ -12,7 +12,7 @@ function Item({ ...props }: ItemProps) {
     return <></>;
 }
 
-// TODO: Implement placeholder component
+// Placeholder component
 export const Grid = withStaticProperties(View, {
     Item,
 });

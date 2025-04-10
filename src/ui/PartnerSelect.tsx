@@ -7,7 +7,7 @@ export type PartnerSelectProps<TFormFields extends FieldValues> = {
     readonly label: string;
 };
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function PartnerSelect<TFormFields extends FieldValues>({
     id,
     ...props

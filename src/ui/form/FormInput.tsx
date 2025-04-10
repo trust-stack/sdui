@@ -7,7 +7,7 @@ export type FormInputProps<TFormFields extends FieldValues> = {
     readonly label: string;
 } & Omit<TextFieldProps, 'value' | 'onChange'>;
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function FormInput<TFormFields extends FieldValues>({
     id,
     ...props

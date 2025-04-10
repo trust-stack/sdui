@@ -1,6 +1,5 @@
 import { GetProps, Text, styled } from 'tamagui';
 
-// TODO: Implement remaining (Body, Display, Headline, Hero, Label)
 const Title = styled(Text, {
     name: 'Title',
     col: '$onSurface',

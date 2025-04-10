@@ -7,7 +7,7 @@ export type FormNumericalInputProps<TFormFields extends FieldValues> = {
     readonly label: string;
 } & Omit<NumericalInputProps, 'value' | 'onChange'>;
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function FormNumericalInput<TFormFields extends FieldValues>({
     id,
     ...props

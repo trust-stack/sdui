@@ -7,7 +7,7 @@ export type LocationSelectProps<TFormFields extends FieldValues> = {
     readonly label: string;
 };
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function LocationSelect<TFormFields extends FieldValues>({
     id,
     ...props

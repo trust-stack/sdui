@@ -3,7 +3,7 @@ export type DateTimePickerProps = {
     readonly onChange: (value: Date) => void;
 };
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function DateTimePicker({ ...props }: DateTimePickerProps) {
     return <></>;
 }

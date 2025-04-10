@@ -7,7 +7,7 @@ export type FormToggleProps<TFormFields extends FieldValues> = {
     readonly label: string;
 } & Omit<ToggleProps, 'value' | 'onChange'>;
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function FormToggle<TFormFields extends FieldValues>({
     id,
     ...props

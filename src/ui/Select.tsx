@@ -7,7 +7,7 @@ export type SelectProps<T extends string = string> = {
     readonly onChange: (value: T) => void;
 };
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function Select<T extends string = string>({
     ...props
 }: SelectProps<T>) {

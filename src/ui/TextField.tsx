@@ -3,7 +3,7 @@ export type TextFieldProps = {
     readonly onChange: (value: string) => void;
 };
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function TextField({ ...props }: TextFieldProps) {
     return <></>;
 }

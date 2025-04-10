@@ -2,7 +2,7 @@ import { TextField, TextFieldProps } from './TextField';
 
 export type NumericalInputProps = TextFieldProps;
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function NumericalInput({ onChange, ...props }: NumericalInputProps) {
     return (
         <TextField

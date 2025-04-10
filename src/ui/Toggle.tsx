@@ -7,7 +7,7 @@ export type ToggleProps<T extends string = string> = {
     readonly onChange: (value: T) => void;
 };
 
-// TODO: Implement placeholder component
+// Placeholder component
 export function Toggle<T extends string = string>({
     options,
     ...props
@@ -15,7 +15,7 @@ export function Toggle<T extends string = string>({
     return <RadioGroup<T> items={options} {...props} />;
 }
 
-// TODO: Implement placeholder component
+// Placeholder component
 type RadioGroupProps<T extends string = string> = {
     items: {
         label: string;

@@ -1,4 +1,4 @@
-// TODO: Implement placeholder component
+// Placeholder component
 export function Divider() {
     return <></>;
 }
