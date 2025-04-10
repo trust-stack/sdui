@@ -22,7 +22,7 @@ export function HarvestForm() {
 
     return (
         <FormProvider formMethods={formMethods}>
-            <PagerFormBuilder
+            <PagerFormBuilder<TypeOf<typeof schema>>
                 formDto={HarvestFormDto}
                 onSubmit={() => onSubmit(formMethods.getValues())}
             />

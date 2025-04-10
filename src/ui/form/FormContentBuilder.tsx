@@ -1,6 +1,6 @@
 import { YStack } from 'tamagui';
 import { ReactNode, useMemo } from 'react';
-import { FieldValues } from 'react-hook-form';
+import { FieldValues, Path } from 'react-hook-form';
 import { FormItem, FormToggle } from 'src/schema/generated';
 import { Grid } from '../Grid';
 import { LocationSelect } from '../LocationSelect';
@@ -47,7 +47,9 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                 return gridItem(
                                     <LocationSelect<TFormFields>
                                         label={item.inputLabel}
-                                        id={item.validationId}
+                                        id={
+                                            item.validationId as Path<TFormFields>
+                                        }
                                     />,
                                 );
 
@@ -55,7 +57,9 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                 return gridItem(
                                     <PartnerSelect<TFormFields>
                                         label={item.inputLabel}
-                                        id={item.validationId}
+                                        id={
+                                            item.validationId as Path<TFormFields>
+                                        }
                                     />,
                                 );
 
@@ -63,7 +67,9 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                 return gridItem(
                                     <SubLocationSelect<TFormFields>
                                         label={item.inputLabel}
-                                        id={item.validationId}
+                                        id={
+                                            item.validationId as Path<TFormFields>
+                                        }
                                     />,
                                 );
 
@@ -71,7 +77,9 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                 return gridItem(
                                     <TradeItemSelect<TFormFields>
                                         label={item.inputLabel}
-                                        id={item.validationId}
+                                        id={
+                                            item.validationId as Path<TFormFields>
+                                        }
                                     />,
                                 );
 
@@ -79,7 +87,9 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                 return gridItem(
                                     <Form.Input<TFormFields>
                                         label={item.inputLabel}
-                                        id={item.validationId}
+                                        id={
+                                            item.validationId as Path<TFormFields>
+                                        }
                                     />,
                                 );
 
@@ -87,7 +97,9 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                 return gridItem(
                                     <Form.NumericalInput<TFormFields>
                                         label={item.inputLabel}
-                                        id={item.validationId}
+                                        id={
+                                            item.validationId as Path<TFormFields>
+                                        }
                                     />,
                                 );
 
@@ -95,7 +107,9 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                 return gridItem(
                                     <Form.DateTimePicker<TFormFields>
                                         label={item.inputLabel}
-                                        id={item.validationId}
+                                        id={
+                                            item.validationId as Path<TFormFields>
+                                        }
                                     />,
                                 );
 
@@ -103,7 +117,9 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                 return gridItem(
                                     <RenderFormToggle<TFormFields>
                                         label={item.inputLabel}
-                                        id={item.validationId}
+                                        id={
+                                            item.validationId as Path<TFormFields>
+                                        }
                                         formToggle={item.toggle}
                                     />,
                                 );
