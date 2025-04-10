@@ -1,4 +1,4 @@
-import { FieldValues } from 'react-hook-form';
+import { FieldValues, Path } from 'react-hook-form';
 import { Form as FormDto } from 'src/schema/generated';
 import { FormContentBuilder } from '../form';
 import { PagerForm } from './PagerForm';
@@ -15,6 +15,7 @@ export function PagerFormBuilder<TFieldValues extends FieldValues>({
     return (
         <PagerForm<TFieldValues>
             forms={formDto.sections.map((section) => ({
+                id: section.validationId as Path<TFieldValues>,
                 title: section.title,
                 content: <FormContentBuilder items={section.items} />,
             }))}
