@@ -3,6 +3,10 @@ import { ReactNode, useMemo } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { FormItem, FormToggle } from 'src/schema/generated';
 import { Grid } from '../Grid';
+import { LocationSelect } from '../LocationSelect';
+import { PartnerSelect } from '../PartnerSelect';
+import { SubLocationSelect } from '../SubLocationSelect';
+import { TradeItemSelect } from '../TradeItemSelect';
 import { FormToggleProps } from './FormToggle';
 import { Form } from './Form';
 import { useFormContext } from './context';
@@ -39,16 +43,35 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                                     </Form.Subheader>,
                                 );
 
-                            // TODO: Add select components for these types
                             case 'SELECT_LOCATION':
-                            case 'SELECT_PARTNER':
-                            case 'SELECT_SUB_LOCATION':
-                            case 'SELECT_TRADE_ITEM':
                                 return gridItem(
-                                    <Form.Select<TFormFields>
+                                    <LocationSelect<TFormFields>
                                         label={item.inputLabel}
                                         id={item.validationId}
-                                        options={[]}
+                                    />,
+                                );
+
+                            case 'SELECT_PARTNER':
+                                return gridItem(
+                                    <PartnerSelect<TFormFields>
+                                        label={item.inputLabel}
+                                        id={item.validationId}
+                                    />,
+                                );
+
+                            case 'SELECT_SUB_LOCATION':
+                                return gridItem(
+                                    <SubLocationSelect<TFormFields>
+                                        label={item.inputLabel}
+                                        id={item.validationId}
+                                    />,
+                                );
+
+                            case 'SELECT_TRADE_ITEM':
+                                return gridItem(
+                                    <TradeItemSelect<TFormFields>
+                                        label={item.inputLabel}
+                                        id={item.validationId}
                                     />,
                                 );
 
