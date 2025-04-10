@@ -142,12 +142,13 @@ export const HarvestForm: Form = {
         storageDispatch: {
             option: {
                 type: 'mixed',
+                required: true,
                 oneOf: ['storing', 'dispatching'],
             },
             storage: {
                 type: 'string',
                 when: {
-                    field: 'storageDispatch.option',
+                    field: 'option',
                     is: 'storing',
                     then: {
                         type: 'string',
@@ -159,7 +160,7 @@ export const HarvestForm: Form = {
             partner: {
                 type: 'string',
                 when: {
-                    field: 'storageDispatch.option',
+                    field: 'option',
                     is: 'dispatching',
                     then: {
                         type: 'string',
