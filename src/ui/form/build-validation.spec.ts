@@ -4,7 +4,7 @@ import { FormValidation } from 'src/schema/generated';
 import { buildValidationSchema } from './build-validation';
 
 describe('buildValidationSchema', () => {
-    it('should build a valid yup schema from HarvestForm validation', () => {
+    it('should build a valid yup schema from validation dto', () => {
         // Arrange: build validation schema
         const schema = buildValidationSchema(formValidation);
 
