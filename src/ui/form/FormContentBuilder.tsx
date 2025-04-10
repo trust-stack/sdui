@@ -136,7 +136,7 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
 
 type RenderFormToggleProps<TFormFields extends FieldValues> = {
     readonly formToggle: FormToggle;
-} & FormToggleProps<TFormFields>;
+} & Omit<FormToggleProps<TFormFields>, 'options'>;
 
 function RenderFormToggle<TFormFields extends FieldValues>({
     id,
@@ -160,7 +160,9 @@ function RenderFormToggle<TFormFields extends FieldValues>({
             />
 
             {conditionalItem && (
-                <FormContentBuilder items={conditionalItem.items} />
+                <FormContentBuilder<TFormFields>
+                    items={conditionalItem.items}
+                />
             )}
         </YStack>
     );
