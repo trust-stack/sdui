@@ -87,7 +87,7 @@ const buildValidationField = (field: FormValidationItem): yup.AnySchema => {
     }
 
     if (field.when) {
-        validator = validator.when(field.when.field, {
+        validator = validator.when(`$${field.when.field}`, {
             is: field.when.is,
             then: buildValidationField(field.when.then),
             otherwise: field.when.otherwise
