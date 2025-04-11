@@ -11,7 +11,13 @@ async function generateJsonSchemaTypes() {
 
         // Read all JSON schema files
         const files = await fs.readdir(schemaDir);
-        const schemaFiles = files.filter((file) => file.endsWith('.json'));
+
+        // Root schema files start with '@' to indicate they are entry points
+        // Referenced schemas (without '@') are only included when referenced by a root schema
+        // This prevents duplicate type definitions while ensuring all needed types are generated
+        const schemaFiles = files.filter(
+            (file) => file.startsWith('@') && file.endsWith('.json'),
+        );
 
         // Accumulate all type definitions
         let combinedTypes = '';
@@ -26,14 +32,12 @@ async function generateJsonSchemaTypes() {
             // Generate TypeScript types
             const typescript = await compile(
                 schema,
-                schemaFile.replace('.json', ''),
+                schemaFile.replace('@', '').replace('.json', ''),
                 {
                     bannerComment: '',
                     cwd: schemaDir,
                 },
             );
-
-            console.log({ typescript });
 
             // Add export statement and append to combined types
             combinedTypes += `${typescript}\n\n`;
