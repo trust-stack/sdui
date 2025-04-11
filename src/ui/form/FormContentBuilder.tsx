@@ -1,11 +1,17 @@
-import { YStack } from 'tamagui';
+import {
+    Title,
+    FormInput,
+    FormNumericalInput,
+    FormSelect,
+    Grid,
+    YStack,
+    useFormContext,
+} from '@truststack/ui-kit';
 import { ReactNode, useMemo } from 'react';
-import { FieldValues, Path } from 'react-hook-form';
-import { FormItem, FormToggle } from 'src/schema/generated';
-import { Grid } from '../Grid';
-import { FormToggleProps } from './FormToggle';
-import { Form } from './Form';
-import { useFormContext } from './context';
+import { FieldValues, useWatch } from 'react-hook-form';
+import { FormItem, FormToggle as FormToggleDto } from 'src/schema/generated';
+import { FormDateTimePicker } from './FormDateTimePicker';
+import { FormToggle, FormToggleProps } from './FormToggle';
 
 type FormContentBuilderProps = {
     readonly items: FormItem[];
@@ -15,93 +21,78 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
     items,
 }: FormContentBuilderProps) {
     return (
-        <Form.Content>
-            <YStack gap={4}>
-                <Grid>
-                    {items.map((item, itemIndex) => {
-                        const key = `form-item-${itemIndex}`;
+        <YStack gap={4}>
+            <Grid>
+                {items.map((item, itemIndex) => {
+                    const key = `form-item-${itemIndex}`;
 
-                        const gridItem = (children: ReactNode) => (
-                            <Grid.Item
-                                key={key}
-                                exp={item.expanded}
-                                compact={item.compact}
-                            >
-                                {children}
-                            </Grid.Item>
-                        );
+                    const gridItem = (children: ReactNode) => (
+                        <Grid.Item
+                            key={key}
+                            exp={item.expanded}
+                            compact={item.compact}
+                        >
+                            {children}
+                        </Grid.Item>
+                    );
 
-                        switch (item.type) {
-                            case 'SUB_HEADER':
-                                return gridItem(
-                                    <Form.Subheader>
-                                        {item.subHeader}
-                                    </Form.Subheader>,
-                                );
+                    switch (item.type) {
+                        case 'SUB_HEADER':
+                            return gridItem(<Title>{item.subHeader}</Title>);
 
-                            case 'SELECT':
-                                return gridItem(
-                                    <Form.Select<TFormFields>
-                                        label={item.inputLabel}
-                                        id={
-                                            item.validationId as Path<TFormFields>
-                                        }
-                                    />,
-                                );
+                        case 'SELECT':
+                            return gridItem(
+                                <FormSelect<TFormFields>
+                                    id={item.validationId}
+                                    label={item.inputLabel}
+                                    options={item.select?.options}
+                                />,
+                            );
 
-                            case 'INPUT_TEXT':
-                                return gridItem(
-                                    <Form.Input<TFormFields>
-                                        label={item.inputLabel}
-                                        id={
-                                            item.validationId as Path<TFormFields>
-                                        }
-                                    />,
-                                );
+                        case 'INPUT_TEXT':
+                            return gridItem(
+                                <FormInput<TFormFields>
+                                    id={item.validationId}
+                                    label={item.inputLabel}
+                                />,
+                            );
 
-                            case 'INPUT_NUMERICAL':
-                                return gridItem(
-                                    <Form.NumericalInput<TFormFields>
-                                        label={item.inputLabel}
-                                        id={
-                                            item.validationId as Path<TFormFields>
-                                        }
-                                    />,
-                                );
+                        case 'INPUT_NUMERICAL':
+                            return gridItem(
+                                <FormNumericalInput<TFormFields>
+                                    id={item.validationId}
+                                    label={item.inputLabel}
+                                />,
+                            );
 
-                            case 'DATE_TIME_PICKER':
-                                return gridItem(
-                                    <Form.DateTimePicker<TFormFields>
-                                        label={item.inputLabel}
-                                        id={
-                                            item.validationId as Path<TFormFields>
-                                        }
-                                    />,
-                                );
+                        case 'DATE_TIME_PICKER':
+                            return gridItem(
+                                <FormDateTimePicker<TFormFields>
+                                    id={item.validationId}
+                                    label={item.inputLabel}
+                                />,
+                            );
 
-                            case 'TOGGLE':
-                                return gridItem(
-                                    <RenderFormToggle<TFormFields>
-                                        label={item.inputLabel}
-                                        id={
-                                            item.validationId as Path<TFormFields>
-                                        }
-                                        formToggle={item.toggle}
-                                    />,
-                                );
+                        case 'TOGGLE':
+                            return gridItem(
+                                <RenderFormToggle<TFormFields>
+                                    id={item.validationId}
+                                    label={item.inputLabel}
+                                    formToggle={item.toggle}
+                                />,
+                            );
 
-                            default:
-                                return null;
-                        }
-                    })}
-                </Grid>
-            </YStack>
-        </Form.Content>
+                        default:
+                            return null;
+                    }
+                })}
+            </Grid>
+        </YStack>
     );
 }
 
 type RenderFormToggleProps<TFormFields extends FieldValues> = {
-    readonly formToggle: FormToggle;
+    readonly formToggle: FormToggleDto;
 } & Omit<FormToggleProps<TFormFields>, 'options'>;
 
 function RenderFormToggle<TFormFields extends FieldValues>({
@@ -109,9 +100,12 @@ function RenderFormToggle<TFormFields extends FieldValues>({
     formToggle,
     ...props
 }: RenderFormToggleProps<TFormFields>) {
-    const { watch } = useFormContext<TFormFields>();
+    const { control } = useFormContext<TFormFields>();
 
-    const value = watch(id);
+    const [value] = useWatch<TFormFields>({
+        control,
+        name: [id],
+    });
 
     const conditionalItem = useMemo(() => {
         return formToggle.conditionalItems.find((item) => item.value === value);
@@ -119,9 +113,9 @@ function RenderFormToggle<TFormFields extends FieldValues>({
 
     return (
         <YStack gap={4}>
-            <Form.Toggle<TFormFields>
-                options={formToggle.options}
+            <FormToggle<TFormFields>
                 id={id}
+                options={formToggle.options}
                 {...props}
             />
 

@@ -1,6 +1,8 @@
 import { ReactNode, createContext, useContext } from 'react';
 import { Platform } from 'react-native';
 
+// TODO: Move to @trust-stack/ui-kit?
+
 const PlatformContext = createContext({
     platform: Platform.OS,
 });

@@ -1,8 +1,8 @@
+import { FormProvider } from '@truststack/ui-kit';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TypeOf } from 'yup';
-import { FormProvider, buildValidationSchema } from '../ui/form';
-import { PagerFormBuilder } from '../ui/pager-form';
+import { PagerFormBuilder, buildValidationSchema } from '../ui';
 import { HarvestForm as HarvestFormDto } from './harvest';
 
 // Example Harvest Form

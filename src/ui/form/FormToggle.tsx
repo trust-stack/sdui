@@ -1,16 +1,19 @@
+import { RadioGroup, useFormContext } from '@truststack/ui-kit';
 import { Controller, FieldValues, Path } from 'react-hook-form';
-import { Toggle, ToggleProps } from '../Toggle';
-import { useFormContext } from './context';
+
+// TODO: Move to @trust-stack/ui-kit?
 
 export type FormToggleProps<TFormFields extends FieldValues> = {
     readonly id: Path<TFormFields>;
-    readonly label: string;
-} & Omit<ToggleProps, 'value' | 'onChange'>;
+    readonly options: {
+        label: string;
+        value: string;
+    }[];
+};
 
-// Placeholder component
 export function FormToggle<TFormFields extends FieldValues>({
     id,
-    ...props
+    options,
 }: FormToggleProps<TFormFields>) {
     const { control } = useFormContext<TFormFields>();
 
@@ -19,10 +22,10 @@ export function FormToggle<TFormFields extends FieldValues>({
             control={control}
             name={id}
             render={({ field }) => (
-                <Toggle
-                    {...props}
-                    value={field?.value}
-                    onChange={field?.onChange}
+                <RadioGroup
+                    value={field.value}
+                    onChange={field.onChange}
+                    items={options}
                 />
             )}
         />
