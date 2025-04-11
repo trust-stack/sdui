@@ -1,6 +1,6 @@
-import { Form } from 'src/schema/generated';
+import { PagerForm } from 'src/schema/generated';
 
-export const DispatchForm: Form = {
+export const DispatchForm: PagerForm = {
     header: {
         title: 'Dispatch Event',
     },

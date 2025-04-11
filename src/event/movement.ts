@@ -1,6 +1,6 @@
-import { Form } from 'src/schema/generated';
+import { PagerForm } from 'src/schema/generated';
 
-export const MovementForm: Form = {
+export const MovementForm: PagerForm = {
     header: {
         title: 'Movement Event',
     },

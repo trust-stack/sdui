@@ -1,6 +1,6 @@
-import { Form } from 'src/schema/generated';
+import { PagerForm } from 'src/schema/generated';
 
-export const ReceiveForm: Form = {
+export const ReceiveForm: PagerForm = {
     header: {
         title: 'Receive Event',
     },

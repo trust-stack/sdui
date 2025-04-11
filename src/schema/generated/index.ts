@@ -306,7 +306,7 @@ export interface FormValidationItem {
 }
 
 
-export interface Form {
+export interface PagerForm {
   header: {
     title: string;
     subHeader?: string;
