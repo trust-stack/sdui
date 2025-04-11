@@ -8,6 +8,10 @@ const config: StorybookConfig = {
         name: '@storybook/react-vite',
         options: {},
     },
+    typescript: {
+        // Disable docgen which is causing the parsing issue
+        reactDocgen: false,
+    },
     async viteFinal(config) {
         const { mergeConfig } = await import('vite');
         return mergeConfig(config, {
