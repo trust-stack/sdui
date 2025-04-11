@@ -20,7 +20,16 @@ export const harvestForm: PagerForm = {
                     type: 'SELECT',
                     inputLabel: 'Paddock',
                     select: {
-                        options: [],
+                        options: [
+                            {
+                                label: 'Paddock 1',
+                                value: 'paddock1',
+                            },
+                            {
+                                label: 'Paddock 2',
+                                value: 'paddock2',
+                            },
+                        ],
                     },
                     expanded: 12,
                     compact: 12,
@@ -49,7 +58,16 @@ export const harvestForm: PagerForm = {
                     type: 'SELECT',
                     inputLabel: 'Trade Item',
                     select: {
-                        options: [],
+                        options: [
+                            {
+                                label: 'Trade Item 1',
+                                value: 'tradeItem1',
+                            },
+                            {
+                                label: 'Trade Item 2',
+                                value: 'tradeItem2',
+                            },
+                        ],
                     },
                     expanded: 6,
                     compact: 12,
@@ -96,7 +114,16 @@ export const harvestForm: PagerForm = {
                                         type: 'SELECT',
                                         inputLabel: 'Storage',
                                         select: {
-                                            options: [],
+                                            options: [
+                                                {
+                                                    label: 'Storage 1',
+                                                    value: 'storage1',
+                                                },
+                                                {
+                                                    label: 'Storage 2',
+                                                    value: 'storage2',
+                                                },
+                                            ],
                                         },
                                         expanded: 12,
                                         compact: 12,
@@ -111,7 +138,16 @@ export const harvestForm: PagerForm = {
                                         type: 'SELECT',
                                         inputLabel: 'Trade Partner',
                                         select: {
-                                            options: [],
+                                            options: [
+                                                {
+                                                    label: 'Trade Partner 1',
+                                                    value: 'tradePartner1',
+                                                },
+                                                {
+                                                    label: 'Trade Partner 2',
+                                                    value: 'tradePartner2',
+                                                },
+                                            ],
                                         },
                                         expanded: 12,
                                         compact: 12,
