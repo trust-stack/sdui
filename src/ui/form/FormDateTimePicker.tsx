@@ -1,4 +1,4 @@
-import { useFormContext } from '@truststack/ui-kit';
+import { Body, useFormContext } from '@truststack/ui-kit';
 import { Controller, FieldValues, Path } from 'react-hook-form';
 
 // TODO: Move to @trust-stack/ui-kit?
@@ -16,6 +16,10 @@ export function FormDateTimePicker<TFormFields extends FieldValues>({
     const { control } = useFormContext<TFormFields>();
 
     return (
-        <Controller control={control} name={id} render={({ field }) => <></>} />
+        <Controller
+            control={control}
+            name={id}
+            render={({ field }) => <Body>Placeholder for DateTimePicker</Body>}
+        />
     );
 }

@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TypeOf } from 'yup';
 import { PagerFormBuilder, buildValidationSchema } from '../ui';
-import { HarvestForm as HarvestFormDto } from './harvest';
+import { harvestForm } from './harvest';
 
 // Example Harvest Form
 export function HarvestForm() {
-    const schema = buildValidationSchema(HarvestFormDto.validation);
+    const schema = buildValidationSchema(harvestForm.validation);
 
     const formMethods = useForm<TypeOf<typeof schema>>({
         resolver: yupResolver(schema),
@@ -23,7 +23,7 @@ export function HarvestForm() {
     return (
         <FormProvider formMethods={formMethods}>
             <PagerFormBuilder<TypeOf<typeof schema>>
-                formDto={HarvestFormDto}
+                formDto={harvestForm}
                 onSubmit={() => onSubmit(formMethods.getValues())}
             />
         </FormProvider>

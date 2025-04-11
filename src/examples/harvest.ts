@@ -1,6 +1,6 @@
 import { PagerForm } from 'src/schema/generated';
 
-export const HarvestForm: PagerForm = {
+export const harvestForm: PagerForm = {
     header: {
         title: 'Harvest Event',
     },
