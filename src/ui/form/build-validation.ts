@@ -1,13 +1,5 @@
-import { FormValidation, FormValidationItem } from 'src/schema/generated';
+import { FormValidation, FormValidationField } from 'src/schema/generated';
 import * as yup from 'yup';
-
-function isFormValidationItem(
-    value: FormValidation[string],
-): value is FormValidationItem {
-    return (
-        'type' in value && typeof (<FormValidationItem>value).type === 'string'
-    );
-}
 
 export const buildValidationSchema = (
     validation: FormValidation,
@@ -15,7 +7,7 @@ export const buildValidationSchema = (
     const schema: Record<string, yup.AnySchema> = {};
 
     for (const [key, value] of Object.entries(validation)) {
-        if (isFormValidationItem(value)) {
+        if (isFormValidationField(value)) {
             // Handle direct validation item
             schema[key] = buildValidationField(value);
         } else {
@@ -31,7 +23,7 @@ export const buildValidationSchema = (
     return yup.object().shape(schema);
 };
 
-const buildValidationField = (field: FormValidationItem): yup.AnySchema => {
+const buildValidationField = (field: FormValidationField): yup.AnySchema => {
     let validator: yup.AnySchema;
 
     switch (field.type) {
@@ -98,3 +90,11 @@ const buildValidationField = (field: FormValidationItem): yup.AnySchema => {
 
     return validator;
 };
+
+function isFormValidationField(
+    value: FormValidation[string],
+): value is FormValidationField {
+    return (
+        'type' in value && typeof (<FormValidationField>value).type === 'string'
+    );
+}

@@ -70,16 +70,16 @@ export interface FormValidation {
    * via the `patternProperty` ".*".
    */
   [k: string]:
-    | FormValidationItem
+    | FormValidationField
     | {
-        [k: string]: FormValidationItem;
+        [k: string]: FormValidationField;
       };
 }
 /**
  * This interface was referenced by `undefined`'s JSON-Schema definition
  * via the `patternProperty` ".*".
  */
-export interface FormValidationItem {
+export interface FormValidationField {
   type: "array" | "date" | "mixed" | "number" | "object" | "string";
   required?: boolean;
   message?: string;
@@ -109,8 +109,8 @@ export interface FormValidationItem {
         }
       | unknown[]
       | null;
-    then: FormValidationItem;
-    otherwise?: FormValidationItem;
+    then: FormValidationField;
+    otherwise?: FormValidationField;
     [k: string]: unknown;
   };
   [k: string]: unknown;

@@ -5,13 +5,13 @@
         ".*": {
             "oneOf": [
                 {
-                    "$ref": "form-validation-item.json"
+                    "$ref": "form-validation-field.json"
                 },
                 {
                     "type": "object",
                     "patternProperties": {
                         ".*": {
-                            "$ref": "form-validation-item.json"
+                            "$ref": "form-validation-field.json"
                         }
                     }
                 }
