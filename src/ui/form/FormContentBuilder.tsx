@@ -121,6 +121,7 @@ function RenderFormToggle<TFormFields extends FieldValues>({
 
             {conditionalItem && (
                 <FormContentBuilder<TFormFields>
+                    key={conditionalItem.value}
                     items={conditionalItem.items}
                 />
             )}
