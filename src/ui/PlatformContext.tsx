@@ -7,7 +7,7 @@ const PlatformContext = createContext({
     platform: Platform.OS,
 });
 
-type PlatformProviderProps = {
+export type PlatformProviderProps = {
     readonly children: ReactNode;
     readonly platform?: 'web' | 'android' | 'ios' | 'windows' | 'macos';
 };

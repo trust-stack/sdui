@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { HarvestForm } from './HarvestForm';
+import { PlatformDecorator } from '../storybook-utils';
 
 export default {
     component: HarvestForm,
@@ -7,4 +8,6 @@ export default {
 
 type Story = StoryObj<typeof HarvestForm>;
 
-export const Example: Story = {};
+export const Web: Story = {
+    decorators: [PlatformDecorator('web')],
+};

@@ -1,6 +1,7 @@
 import { config, TamaguiProvider, Theme } from '@truststack/ui-kit';
 import { Preview } from '@storybook/react';
 import React from 'react';
+import { PlatformProvider } from '../src/ui/PlatformContext';
 
 const preview: Preview = {
     parameters: {
@@ -18,9 +19,11 @@ const preview: Preview = {
     decorators: [
         (Story) => (
             <TamaguiProvider config={config}>
-                <Theme name={'light'}>
-                    <Story />
-                </Theme>
+                <PlatformProvider>
+                    <Theme name={'light'}>
+                        <Story />
+                    </Theme>
+                </PlatformProvider>
             </TamaguiProvider>
         ),
     ],
