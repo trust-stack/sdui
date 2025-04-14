@@ -1,37 +1,79 @@
-import { tamaguiPlugin } from '@tamagui/vite-plugin';
 import type { StorybookConfig } from '@storybook/react-vite';
+import { dirname, join } from 'path';
 
 const config: StorybookConfig = {
     stories: ['../src/**/*.stories.tsx'],
-    addons: ['@storybook/addon-essentials'],
-    framework: {
-        name: '@storybook/react-vite',
-        options: {},
+    addons: [
+        getAbsolutePath("@storybook/addon-links"),
+        getAbsolutePath("@storybook/addon-essentials"),
+        getAbsolutePath("@storybook/addon-interactions"),
+        {
+            name: '@storybook/addon-react-native-web',
+            options: {
+                modulesToTranspile: [
+                    'expo-linking',
+                    'expo-constants',
+                    'expo-modules-core',
+                    'expo-document-picker',
+                    'expo-av',
+                    'expo-asset',
+                ],
+            },
+        },
+    ],
+    core: {
+        builder: '@storybook/builder-vite',
     },
-    typescript: {
-        // Disable docgen which is causing the parsing issue
-        reactDocgen: false,
+    framework: {
+        name: getAbsolutePath('@storybook/react-vite'),
+        options: {},
     },
     async viteFinal(config) {
         const { mergeConfig } = await import('vite');
         return mergeConfig(config, {
             resolve: {
                 alias: {
-                    'react-native$': 'react-native-web',
+                    '*.svg': '*.svg?react',
+                    'react-native': 'react-native-web',
                 },
             },
-            plugins: [
-                tamaguiPlugin({
-                    config: './.storybook/tamagui.config.ts',
-                    components: ['tamagui'],
-                    importsWhitelist: ['constants.js', 'colors.js'],
-                    logTimings: true,
-                    disableExtraction: true,
-                    platform: 'web',
-                }),
-            ],
+            optimizeDeps: {
+                esbuildOptions: {
+                    resolveExtensions: [
+                        '.web.js',
+                        '.web.jsx',
+                        '.web.ts',
+                        '.web.tsx',
+                        '.mjs',
+                        '.js',
+                        '.mts',
+                        '.ts',
+                        '.jsx',
+                        '.tsx',
+                        '.json',
+                    ],
+                    loader: {
+                        '.js': 'jsx',
+                    },
+                },
+            },
+            define: {
+                'process.env': {},
+            },
+            legacy: {
+                skipWebSocketTokenCheck: true,
+            },
         });
     },
 };
-
 export default config;
+
+function getAbsolutePath(value: string): any {
+    return dirname(require.resolve(join(value, 'package.json')));
+}
+
+process.on('SIGINT', function () {
+    console.log('\nGracefully shutting down from SIGINT (Ctrl-C)');
+    // some other closing procedures go here
+    process.exit(0);
+});

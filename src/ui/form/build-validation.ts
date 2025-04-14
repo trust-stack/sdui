@@ -94,7 +94,5 @@ const buildValidationField = (field: FormValidationField): yup.AnySchema => {
 function isFormValidationField(
     value: FormValidation[string],
 ): value is FormValidationField {
-    return (
-        'type' in value && typeof (<FormValidationField>value).type === 'string'
-    );
+    return 'type' in value && typeof value.type === 'string';
 }
