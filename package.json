@@ -5,11 +5,14 @@
     "author": "",
     "private": true,
     "license": "UNLICENSED",
-    "main": "src/index.ts",
+    "main": "dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "dist/index.d.ts",
     "bin": {
         "sdui": "./dist/sdui.js"
     },
     "scripts": {
+        "build": "tsup src/index.ts --format cjs,esm --dts && pnpm build:cli",
         "build:cli": "tsup bin/sdui.ts --format cjs --dts",
         "codegen:json-schema": "ts-node --project ./tsconfig.json -r tsconfig-paths/register ./scripts/codegen-json-schema.ts",
         "format": "prettier --write \"src/**/*.{ts,tsx}\"",
@@ -45,7 +48,7 @@
         "@storybook/test": "^8.6.12",
         "@tamagui/vite-plugin": "1.125.17",
         "@types/node": "^20.3.1",
-        "@types/react": "^19.1.0",
+        "@types/react": "^18.2.0",
         "@typescript-eslint/eslint-plugin": "^8.0.0",
         "@typescript-eslint/parser": "^8.0.0",
         "eslint": "^8.0.0",
@@ -54,7 +57,7 @@
         "json-schema-to-typescript": "^15.0.4",
         "prettier": "^3.0.0",
         "storybook": "^8.6.12",
-        "tamagui-loader": "1.125.32",
+        "tamagui-loader": "1.125.17",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "tsup": "^8.4.0",
@@ -64,8 +67,8 @@
         "vitest": "^2.1.1"
     },
     "resolutions": {
-        "@tamagui/core": "1.125.32",
-        "@tamagui/web": "1.125.32",
+        "@tamagui/core": "1.125.17",
+        "@tamagui/web": "1.125.17",
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
         "react": "18.2.0",
