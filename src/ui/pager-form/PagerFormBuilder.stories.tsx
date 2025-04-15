@@ -15,12 +15,9 @@ export default {
     ],
     args: {
         formDto: data as PagerFormDto,
-        onSubmit: () => {},
     },
 } as Meta<typeof PagerFormBuilder>;
 
 type Story = StoryObj<typeof PagerFormBuilder>;
 
-export const Web: Story = {
-
-};
+export const Web: Story = {};

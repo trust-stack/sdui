@@ -1,7 +1,6 @@
 import { Preview } from '@storybook/react';
-import { TamaguiProvider } from '@truststack/ui-kit';
+import { TamaguiProvider, config } from '@truststack/ui-kit';
 import React from 'react';
-import config from './tamagui.config';
 
 const preview: Preview = {
     parameters: {

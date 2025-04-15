@@ -1,10 +1,9 @@
-import { FormProvider } from '@truststack/ui-kit';
-import { Path, useForm } from 'react-hook-form';
+import { FormProvider, PagerForm } from '@truststack/ui-kit';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AnySchema, ObjectSchema, TypeOf } from 'yup';
 import { PagerForm as PagerFormDto } from 'src/schema/generated';
 import { FormContentBuilder, buildValidationSchema } from '../form';
-import { PagerForm } from './PagerForm';
 
 type FormDataType = TypeOf<ObjectSchema<Record<string, AnySchema>>>;
 
@@ -31,12 +30,16 @@ export function PagerFormBuilder({
     });
 
     return (
-        <FormProvider formMethods={formMethods}>
+        <FormProvider<TypeOf<typeof schema>> formMethods={formMethods}>
             <PagerForm<TypeOf<typeof schema>>
                 forms={formDto.sections.map((section) => ({
-                    id: section.validationId as Path<TypeOf<typeof schema>>,
+                    id: section.validationId,
                     title: section.title,
-                    content: <FormContentBuilder items={section.items} />,
+                    content: (
+                        <FormContentBuilder<TypeOf<typeof schema>>
+                            items={section.items}
+                        />
+                    ),
                 }))}
                 onSubmit={() => onSubmit(formMethods.getValues())}
                 submitting={submitting}

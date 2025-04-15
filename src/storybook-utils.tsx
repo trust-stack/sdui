@@ -1,10 +1,10 @@
-import { PlatformProvider, PlatformProviderProps } from './ui/PlatformContext';
+import { PlatformProvider } from '@truststack/ui-kit';
 
-export const PlatformDecorator =
-    (platform: PlatformProviderProps['platform']) => (Story) => {
-        return (
-            <PlatformProvider platform={platform}>
-                <Story />
-            </PlatformProvider>
-        );
-    };
+// Storybook decorator for setting the platform context
+export const PlatformDecorator = (platform: 'web' | 'ios') => (Story) => {
+    return (
+        <PlatformProvider platform={platform}>
+            <Story />
+        </PlatformProvider>
+    );
+};
