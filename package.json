@@ -4,7 +4,6 @@
     "description": "Server-Driven UI",
     "author": "",
     "private": true,
-    "type": "module",
     "license": "UNLICENSED",
     "main": "src/index.ts",
     "scripts": {
