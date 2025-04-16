@@ -11,6 +11,21 @@
     "bin": {
         "sdui": "./dist/sdui.js"
     },
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs"
+        },
+        "./cli": {
+            "types": "./dist/sdui.d.ts",
+            "require": "./dist/sdui.js"
+        }
+    },
     "engines": {
         "node": ">=20.0.0"
     },
