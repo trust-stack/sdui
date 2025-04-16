@@ -4,6 +4,7 @@ import 'reflect-metadata';
 import { Command } from 'commander';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as readline from 'node:readline/promises';
 import { SDUIConfig } from './types';
 import { loadConfig } from './utils';
 
@@ -23,6 +24,31 @@ program
     )
     .action(async (options) => {
         try {
+            // Check if config file exists
+            const configPath = path.resolve(process.cwd(), options.config);
+            if (!fs.existsSync(configPath)) {
+                const rl = readline.createInterface({
+                    input: process.stdin,
+                    output: process.stdout,
+                });
+
+                const answer = await rl.question(
+                    'No configuration file found. Would you like to create one? (Y/n) ',
+                );
+
+                rl.close();
+
+                if (answer.toLowerCase() !== 'n') {
+                    // Run init command
+                    program.parse(['npx', 'sdui', 'init']);
+                } else {
+                    console.log(
+                        'Please run "npx sdui init" manually to create a configuration file.',
+                    );
+                    process.exit(1);
+                }
+            }
+
             const config = await loadConfig(options.config);
 
             // Import and run the codegen script
