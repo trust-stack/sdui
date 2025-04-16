@@ -18,6 +18,14 @@
         "max": {
             "type": "number"
         },
+        "positive": {
+            "type": "boolean",
+            "description": "Validates that the value is a positive number"
+        },
+        "integer": {
+            "type": "boolean",
+            "description": "Validates that the value is an integer"
+        },
         "oneOf": {
             "type": "array",
             "items": {

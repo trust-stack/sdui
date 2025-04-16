@@ -182,7 +182,8 @@
             "quantity": {
                 "type": "number",
                 "required": true,
-                "message": "Quantity is required"
+                "positive": true,
+                "message": "Quantity must be a positive whole number"
             }
         },
         "storageDispatch": {

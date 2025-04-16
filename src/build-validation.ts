@@ -89,6 +89,12 @@ const buildValidationField = (
             break;
         case 'number':
             validator = yup.number();
+            if (field.positive) {
+                validator = (validator as yup.NumberSchema).positive();
+            }
+            if (field.integer) {
+                validator = (validator as yup.NumberSchema).integer();
+            }
             break;
         case 'date':
             validator = yup.date();

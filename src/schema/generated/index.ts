@@ -85,6 +85,14 @@ export interface FormValidationField {
     message?: string;
     min?: number;
     max?: number;
+    /**
+     * Validates that the value is a positive number
+     */
+    positive?: boolean;
+    /**
+     * Validates that the value is an integer
+     */
+    integer?: boolean;
     oneOf?: (
         | string
         | number
