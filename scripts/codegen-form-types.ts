@@ -127,7 +127,7 @@ async function processJsonFile(
             FormValidationSchema.parse(jsonData);
         } catch (validationError) {
             if (validationError instanceof z.ZodError) {
-                console.log(
+                console.warn(
                     `Skipping ${jsonFile} - not a valid FormValidation schema:`,
                     validationError.errors
                         .map((e) => `${e.path.join('.')}: ${e.message}`)
