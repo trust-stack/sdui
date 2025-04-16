@@ -52,6 +52,9 @@ importers:
       yup:
         specifier: ^0.32.9
         version: 0.32.11
+      zod:
+        specifier: ^3.24.2
+        version: 3.24.2
     devDependencies:
       '@storybook/addon-actions':
         specifier: ^8.3.5
@@ -6010,6 +6013,9 @@ packages:
   yup@0.32.11:
     resolution: {integrity: sha512-Z2Fe1bn+eLstG8DRR6FTavGD+MeAwyfmouhHsIUgaADz8jvFKbO/fXc2trJKZg+5EBjh4gGm3iU/t3onKlXHIg==}
     engines: {node: '>=10'}
+
+  zod@3.24.2:
+    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
 
   zustand@3.7.2:
     resolution: {integrity: sha512-PIJDIZKtokhof+9+60cpockVOq05sJzHCriyvaLBmEJixseQ1a5Kdov6fWZfWOu5SK9c+FhH1jU0tntLxRJYMA==}
@@ -13246,6 +13252,8 @@ snapshots:
       nanoclone: 0.2.1
       property-expr: 2.0.6
       toposort: 2.0.2
+
+  zod@3.24.2: {}
 
   zustand@3.7.2(react@18.2.0):
     optionalDependencies:

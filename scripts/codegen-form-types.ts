@@ -1,7 +1,9 @@
 import { promises as fs } from 'fs';
 import * as path from 'path';
 import { glob } from 'glob';
-import { PagerForm, FormValidationField } from '../src/schema/generated';
+import { z } from 'zod';
+import { FormValidationField } from '../src/schema/generated';
+import { FormValidationSchema } from '../src/schema-validation';
 import { isFormValidationField } from '../src/ui/form/build-validation';
 
 interface ValidationTypeGenerator {
@@ -118,7 +120,23 @@ async function processJsonFile(
 ) {
     try {
         const jsonContent = await fs.readFile(jsonFile, 'utf8');
-        const jsonData = JSON.parse(jsonContent) as PagerForm;
+        const jsonData = JSON.parse(jsonContent);
+
+        // Validate the parsed JSON against 'FormValidationSchema' type
+        try {
+            FormValidationSchema.parse(jsonData);
+        } catch (validationError) {
+            if (validationError instanceof z.ZodError) {
+                console.log(
+                    `Skipping ${jsonFile} - not a valid FormValidation schema:`,
+                    validationError.errors
+                        .map((e) => `${e.path.join('.')}: ${e.message}`)
+                        .join('\n'),
+                );
+                return;
+            }
+            throw validationError;
+        }
 
         const basename = path
             .basename(jsonFile)
