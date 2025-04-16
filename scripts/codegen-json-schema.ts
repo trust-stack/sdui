@@ -36,6 +36,10 @@ async function generateJsonSchemaTypes() {
                 {
                     bannerComment: '',
                     cwd: schemaDir,
+                    style: {
+                        singleQuote: true,
+                        tabWidth: 4,
+                    },
                 },
             );
 
