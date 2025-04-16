@@ -4,9 +4,9 @@ import { dirname, join } from 'path';
 const config: StorybookConfig = {
     stories: ['../src/**/*.stories.tsx'],
     addons: [
-        getAbsolutePath("@storybook/addon-links"),
-        getAbsolutePath("@storybook/addon-essentials"),
-        getAbsolutePath("@storybook/addon-interactions"),
+        getAbsolutePath('@storybook/addon-links'),
+        getAbsolutePath('@storybook/addon-essentials'),
+        getAbsolutePath('@storybook/addon-interactions'),
         {
             name: '@storybook/addon-react-native-web',
             options: {

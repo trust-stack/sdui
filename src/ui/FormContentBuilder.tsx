@@ -11,7 +11,7 @@ import {
     useFormContext,
 } from '@truststack/ui-kit';
 import { ReactNode, useMemo } from 'react';
-import { FieldValues, useWatch } from 'react-hook-form';
+import { FieldValues, Path, useWatch } from 'react-hook-form';
 import { FormItem, FormToggle as FormToggleDto } from 'src/schema/generated';
 
 type FormContentBuilderProps = {
@@ -44,7 +44,7 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                         case 'SELECT':
                             return gridItem(
                                 <FormSelect<TFormFields>
-                                    id={item.validationId}
+                                    id={item.validationId as Path<TFormFields>}
                                     label={item.inputLabel}
                                     options={item.select?.options}
                                 />,
@@ -53,7 +53,7 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                         case 'INPUT_TEXT':
                             return gridItem(
                                 <FormInput<TFormFields>
-                                    id={item.validationId}
+                                    id={item.validationId as Path<TFormFields>}
                                     label={item.inputLabel}
                                 />,
                             );
@@ -61,7 +61,7 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                         case 'INPUT_NUMERICAL':
                             return gridItem(
                                 <FormNumericalInput<TFormFields>
-                                    id={item.validationId}
+                                    id={item.validationId as Path<TFormFields>}
                                     label={item.inputLabel}
                                 />,
                             );
@@ -69,7 +69,7 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                         case 'DATE_TIME_PICKER':
                             return gridItem(
                                 <FormDateTimePicker<TFormFields>
-                                    id={item.validationId}
+                                    id={item.validationId as Path<TFormFields>}
                                     label={item.inputLabel}
                                 />,
                             );
@@ -77,8 +77,7 @@ export function FormContentBuilder<TFormFields extends FieldValues>({
                         case 'TOGGLE':
                             return gridItem(
                                 <RenderFormToggle<TFormFields>
-                                    id={item.validationId}
-                                    label={item.inputLabel}
+                                    id={item.validationId as Path<TFormFields>}
                                     formToggle={item.toggle}
                                 />,
                             );

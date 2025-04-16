@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { View } from '@truststack/ui-kit';
 import { PagerForm as PagerFormDto } from 'src/schema/generated';
-import data from '../../example.schema.json';
+import data from '../example.schema.json';
 import { PagerFormBuilder } from './PagerFormBuilder';
 
 export default {

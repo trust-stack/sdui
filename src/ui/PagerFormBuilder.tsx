@@ -4,7 +4,8 @@ import { Path, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AnySchema, ObjectSchema, TypeOf, object } from 'yup';
 import { PagerForm as PagerFormDto } from 'src/schema/generated';
-import { FormContentBuilder, buildValidationSchema } from '../form';
+import { buildValidationSchema } from '../build-validation';
+import { FormContentBuilder } from './FormContentBuilder';
 
 type FormDataType = TypeOf<ObjectSchema<Record<string, AnySchema>>>;
 

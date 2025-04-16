@@ -4,7 +4,7 @@ import { glob } from 'glob';
 import { z } from 'zod';
 import { FormValidationField } from '../src/schema/generated';
 import { FormValidationSchema } from '../src/schema-validation';
-import { isFormValidationField } from '../src/ui/form/build-validation';
+import { isFormValidationField } from '../src/build-validation';
 
 interface ValidationTypeGenerator {
     generateTypeContent(
