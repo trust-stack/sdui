@@ -11,6 +11,9 @@
     "bin": {
         "sdui": "./dist/sdui.js"
     },
+    "engines": {
+        "node": ">=20.0.0"
+    },
     "scripts": {
         "build": "tsup src/index.ts --format cjs,esm --dts && pnpm build:cli",
         "build:cli": "tsup bin/sdui.ts --format cjs --dts",
