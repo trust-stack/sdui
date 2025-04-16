@@ -3,25 +3,29 @@ import * as yup from 'yup';
 
 const buildNestedSchema = (
     validationObject: Record<string, FormValidationField>,
+    isOptional = false,
 ): Record<string, yup.AnySchema> => {
     const schema: Record<string, yup.AnySchema> = {};
     for (const [key, value] of Object.entries(validationObject)) {
-        schema[key] = buildValidationField(value);
+        schema[key] = buildValidationField(value, isOptional);
     }
     return schema;
 };
 
 const buildArrayValidation = (
     field: FormValidationField,
+    isOptional = false,
 ): yup.ArraySchema<yup.AnySchema> => {
     let validator = yup.array() as yup.ArraySchema<yup.AnySchema>;
 
     if (field.of) {
         if (isFormValidationField(field.of)) {
-            validator = validator.of(buildValidationField(field.of));
+            validator = validator.of(
+                buildValidationField(field.of, isOptional),
+            );
         } else {
             validator = validator.of(
-                yup.object().shape(buildNestedSchema(field.of)),
+                yup.object().shape(buildNestedSchema(field.of, isOptional)),
             );
         }
     }
@@ -31,6 +35,7 @@ const buildArrayValidation = (
 
 const buildObjectValidation = (
     field: FormValidationField,
+    isOptional = false,
 ): yup.ObjectSchema<any> => {
     let validator = yup.object();
 
@@ -38,11 +43,11 @@ const buildObjectValidation = (
         const nestedSchema: Record<string, yup.AnySchema> = {};
         for (const [key, value] of Object.entries(field.shape)) {
             if (isFormValidationField(value)) {
-                nestedSchema[key] = buildValidationField(value);
+                nestedSchema[key] = buildValidationField(value, isOptional);
             } else {
                 nestedSchema[key] = yup
                     .object()
-                    .shape(buildNestedSchema(value));
+                    .shape(buildNestedSchema(value, isOptional));
             }
         }
         validator = validator.shape(nestedSchema);
@@ -69,8 +74,14 @@ const applyMinMaxValidation = (
     }
 };
 
-const buildValidationField = (field: FormValidationField): yup.AnySchema => {
+const buildValidationField = (
+    field: FormValidationField,
+    parentIsOptional = false,
+): yup.AnySchema => {
     let validator: yup.AnySchema;
+
+    // If parent is optional, all nested fields are optional
+    const isOptional = parentIsOptional || !field.required;
 
     switch (field.type) {
         case 'string':
@@ -83,17 +94,19 @@ const buildValidationField = (field: FormValidationField): yup.AnySchema => {
             validator = yup.date();
             break;
         case 'array':
-            validator = buildArrayValidation(field);
+            validator = buildArrayValidation(field, isOptional);
             break;
         case 'object':
-            validator = buildObjectValidation(field);
+            validator = buildObjectValidation(field, isOptional);
             break;
         default:
             validator = yup.mixed();
     }
 
-    if (field.required) {
+    if (!isOptional) {
         validator = validator.required(field.message);
+    } else {
+        validator = validator.optional();
     }
 
     if (field.min != null) {

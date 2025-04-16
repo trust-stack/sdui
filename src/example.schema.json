@@ -218,14 +218,12 @@
         },
         "tags": {
             "type": "array",
-            "required": true,
             "of": {
                 "type": "string"
             }
         },
         "metadata": {
             "type": "object",
-            "required": true,
             "shape": {
                 "createdBy": {
                     "type": "string",

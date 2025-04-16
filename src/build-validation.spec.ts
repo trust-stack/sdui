@@ -100,18 +100,20 @@ describe('buildValidationSchema', () => {
         ).toBe('optional');
 
         // Assert: 'tags' field requirements
-        expect(schema.fields.tags.spec.presence).toBe('required');
+        expect(schema.fields.tags.spec.presence).toBe('optional');
 
         // Assert: 'metadata' field requirements
-        expect(schema.fields.metadata.spec.presence).toBe('required');
+        expect(schema.fields.metadata.spec.presence).toBe('optional');
+
+        // Assert: nested fields are optional when parent field 'metadata' is optional
         expect(
             (schema.fields.metadata as yup.ObjectSchema<any>).fields.createdBy
                 .spec.presence,
-        ).toBe('required');
+        ).toBe('optional');
         expect(
             (schema.fields.metadata as yup.ObjectSchema<any>).fields.items.spec
                 .presence,
-        ).toBe('required');
+        ).toBe('optional');
 
         // Arrange: prepare valid validation data
         const validData = {
@@ -276,14 +278,12 @@ const formValidation: FormValidation = {
     },
     tags: {
         type: 'array',
-        required: true,
         of: {
             type: 'string',
         },
     },
     metadata: {
         type: 'object',
-        required: true,
         shape: {
             createdBy: {
                 type: 'string',
