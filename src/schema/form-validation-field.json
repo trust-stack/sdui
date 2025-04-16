@@ -31,6 +31,43 @@
                 ]
             }
         },
+        "of": {
+            "oneOf": [
+                {
+                    "$ref": "#"
+                },
+                {
+                    "type": "object",
+                    "patternProperties": {
+                        ".*": {
+                            "$ref": "#"
+                        }
+                    }
+                }
+            ],
+            "description": "Schema for array items when type is 'array'"
+        },
+        "shape": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "type": "object",
+                            "patternProperties": {
+                                ".*": {
+                                    "$ref": "#"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "description": "Schema for object properties when type is 'object'"
+        },
         "when": {
             "type": "object",
             "properties": {
