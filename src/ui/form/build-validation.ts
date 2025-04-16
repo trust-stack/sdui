@@ -1,26 +1,72 @@
 import { FormValidation, FormValidationField } from 'src/schema/generated';
 import * as yup from 'yup';
 
-export const buildValidationSchema = (
-    validation: FormValidation,
-): yup.ObjectSchema<Record<string, yup.AnySchema>> => {
+const buildNestedSchema = (
+    validationObject: Record<string, FormValidationField>,
+): Record<string, yup.AnySchema> => {
     const schema: Record<string, yup.AnySchema> = {};
+    for (const [key, value] of Object.entries(validationObject)) {
+        schema[key] = buildValidationField(value);
+    }
+    return schema;
+};
 
-    for (const [key, value] of Object.entries(validation)) {
-        if (isFormValidationField(value)) {
-            // Handle direct validation item
-            schema[key] = buildValidationField(value);
+const buildArrayValidation = (
+    field: FormValidationField,
+): yup.ArraySchema<yup.AnySchema> => {
+    let validator = yup.array() as yup.ArraySchema<yup.AnySchema>;
+
+    if (field.of) {
+        if (isFormValidationField(field.of)) {
+            validator = validator.of(buildValidationField(field.of));
         } else {
-            // Handle nested object validation
-            const nestedSchema: Record<string, yup.AnySchema> = {};
-            for (const [nestedKey, nestedValue] of Object.entries(value)) {
-                nestedSchema[nestedKey] = buildValidationField(nestedValue);
-            }
-            schema[key] = yup.object().shape(nestedSchema);
+            validator = validator.of(
+                yup.object().shape(buildNestedSchema(field.of)),
+            );
         }
     }
 
-    return yup.object().shape(schema);
+    return validator;
+};
+
+const buildObjectValidation = (
+    field: FormValidationField,
+): yup.ObjectSchema<any> => {
+    let validator = yup.object();
+
+    if (field.shape) {
+        const nestedSchema: Record<string, yup.AnySchema> = {};
+        for (const [key, value] of Object.entries(field.shape)) {
+            if (isFormValidationField(value)) {
+                nestedSchema[key] = buildValidationField(value);
+            } else {
+                nestedSchema[key] = yup
+                    .object()
+                    .shape(buildNestedSchema(value));
+            }
+        }
+        validator = validator.shape(nestedSchema);
+    }
+
+    return validator;
+};
+
+const applyMinMaxValidation = (
+    validator: yup.AnySchema,
+    field: FormValidationField,
+    type: 'min' | 'max',
+    value: number,
+): yup.AnySchema => {
+    switch (field.type) {
+        case 'number':
+            return (validator as yup.NumberSchema)[type](value);
+        case 'string':
+            return (validator as yup.StringSchema)[type](value);
+        case 'array':
+            return (validator as yup.ArraySchema<yup.AnySchema>)[type](value);
+        default:
+            return validator;
+    }
 };
 
 const buildValidationField = (field: FormValidationField): yup.AnySchema => {
@@ -37,10 +83,10 @@ const buildValidationField = (field: FormValidationField): yup.AnySchema => {
             validator = yup.date();
             break;
         case 'array':
-            validator = yup.array();
+            validator = buildArrayValidation(field);
             break;
         case 'object':
-            validator = yup.object();
+            validator = buildObjectValidation(field);
             break;
         default:
             validator = yup.mixed();
@@ -51,27 +97,11 @@ const buildValidationField = (field: FormValidationField): yup.AnySchema => {
     }
 
     if (field.min != null) {
-        if (field.type === 'number') {
-            validator = (validator as yup.NumberSchema).min(field.min);
-        } else if (field.type === 'string') {
-            validator = (validator as yup.StringSchema).min(field.min);
-        } else if (field.type === 'array') {
-            validator = (validator as yup.ArraySchema<yup.AnySchema>).min(
-                field.min,
-            );
-        }
+        validator = applyMinMaxValidation(validator, field, 'min', field.min);
     }
 
     if (field.max != null) {
-        if (field.type === 'number') {
-            validator = (validator as yup.NumberSchema).max(field.max);
-        } else if (field.type === 'string') {
-            validator = (validator as yup.StringSchema).max(field.max);
-        } else if (field.type === 'array') {
-            validator = (validator as yup.ArraySchema<yup.AnySchema>).max(
-                field.max,
-            );
-        }
+        validator = applyMinMaxValidation(validator, field, 'max', field.max);
     }
 
     if (field.oneOf) {
@@ -96,3 +126,19 @@ export function isFormValidationField(
 ): value is FormValidationField {
     return 'type' in value && typeof value.type === 'string';
 }
+
+export const buildValidationSchema = (
+    validation: FormValidation,
+): yup.ObjectSchema<Record<string, yup.AnySchema>> => {
+    const schema: Record<string, yup.AnySchema> = {};
+
+    for (const [key, value] of Object.entries(validation)) {
+        if (isFormValidationField(value)) {
+            schema[key] = buildValidationField(value);
+        } else {
+            schema[key] = yup.object().shape(buildNestedSchema(value));
+        }
+    }
+
+    return yup.object().shape(schema);
+};
