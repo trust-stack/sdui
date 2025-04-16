@@ -19,26 +19,25 @@ export async function loadConfig(configPath: string): Promise<SDUIConfig> {
         const config = plainToInstance(SDUIConfig, configData);
 
         // Validate using class-validator
-        // TODO: Fix validation
-        // const errors = await validate(config, {
-        //     whitelist: true,
-        //     forbidNonWhitelisted: true,
-        // });
+        const errors = await validate(config, {
+            whitelist: true,
+            forbidNonWhitelisted: true,
+        });
 
-        // if (errors.length > 0) {
-        //     const formattedErrors = errors
-        //         .map((error) => {
-        //             const constraints = error.constraints
-        //                 ? Object.values(error.constraints).join(', ')
-        //                 : 'Unknown error';
-        //             return `${error.property}: ${constraints}`;
-        //         })
-        //         .join('\n');
+        if (errors.length > 0) {
+            const formattedErrors = errors
+                .map((error) => {
+                    const constraints = error.constraints
+                        ? Object.values(error.constraints).join(', ')
+                        : 'Unknown error';
+                    return `${error.property}: ${constraints}`;
+                })
+                .join('\n');
 
-        //     throw new Error(
-        //         `Configuration validation failed:\n${formattedErrors}`,
-        //     );
-        // }
+            throw new Error(
+                `Configuration validation failed:\n${formattedErrors}`,
+            );
+        }
 
         return config;
     } catch (error) {
