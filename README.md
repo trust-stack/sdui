@@ -70,3 +70,29 @@ By default, this will look for a `sdui.config.json` file in your current directo
 ```bash
 npx sdui gen --config path/to/config.json
 ```
+
+
+# Example
+
+The `/example` folder containers an `example.schema.json` file and a handler, `example.handler.ts`. 
+
+The config file in `sdui.config.json` is set to generate types in this directory. 
+
+```
+sdui.config.json
+example/
+├── example.handler.ts 
+└── example.schema.json
+```
+
+After building the `cli` (`pnpm build:cli`) and running `npx sdui gen`, types for this example will be created with a resulting directory structure.
+
+```
+sdui.config.json
+example/
+├── example.handler.ts 
+├── example.schema.gen.ts
+└── example.schema.json
+```
+
+Investigating the `example.schema.gen.ts` will reveal a properly typed response from the form, and the `example.handler.ts` can be implemented with type confidence.

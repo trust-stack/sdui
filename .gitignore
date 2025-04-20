@@ -7,3 +7,6 @@
 
 # tamagui
 .tamagui/
+
+# SDUI Gen
+*.gen.ts
