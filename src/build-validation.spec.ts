@@ -44,6 +44,27 @@ describe('buildValidationSchema', () => {
                 .partner,
         ).toBeInstanceOf(yup.StringSchema);
 
+        // Assert: 'tags' array validation
+        expect(schema.fields.tags).toBeInstanceOf(yup.ArraySchema);
+        expect(
+            (schema.fields.tags as yup.ArraySchema<any>).innerType,
+        ).toBeInstanceOf(yup.StringSchema);
+
+        // Assert: 'metadata' object validation
+        expect(schema.fields.metadata).toBeInstanceOf(yup.ObjectSchema);
+        expect(
+            (schema.fields.metadata as yup.ObjectSchema<any>).fields.createdBy,
+        ).toBeInstanceOf(yup.StringSchema);
+        expect(
+            (schema.fields.metadata as yup.ObjectSchema<any>).fields.items,
+        ).toBeInstanceOf(yup.ArraySchema);
+        expect(
+            (
+                (schema.fields.metadata as yup.ObjectSchema<any>).fields
+                    .items as yup.ArraySchema<any>
+            ).innerType,
+        ).toBeInstanceOf(yup.ObjectSchema);
+
         // Assert: 'whereWhen' field requirements
         expect(
             (schema.fields.whereWhen as yup.ObjectSchema<any>).fields.location
@@ -78,6 +99,22 @@ describe('buildValidationSchema', () => {
                 .partner.spec.presence,
         ).toBe('optional');
 
+        // Assert: 'tags' field requirements
+        expect(schema.fields.tags.spec.presence).toBe('optional');
+
+        // Assert: 'metadata' field requirements
+        expect(schema.fields.metadata.spec.presence).toBe('optional');
+
+        // Assert: nested fields are optional when parent field 'metadata' is optional
+        expect(
+            (schema.fields.metadata as yup.ObjectSchema<any>).fields.createdBy
+                .spec.presence,
+        ).toBe('optional');
+        expect(
+            (schema.fields.metadata as yup.ObjectSchema<any>).fields.items.spec
+                .presence,
+        ).toBe('optional');
+
         // Arrange: prepare valid validation data
         const validData = {
             whereWhen: {
@@ -91,6 +128,11 @@ describe('buildValidationSchema', () => {
             storageDispatch: {
                 option: 'storing',
                 storage: 'storage-1',
+            },
+            tags: ['tag1', 'tag2'],
+            metadata: {
+                createdBy: 'user1',
+                items: [{ id: 1 }, { id: 2 }],
             },
         };
 
@@ -106,6 +148,11 @@ describe('buildValidationSchema', () => {
             },
             storageDispatch: {
                 option: 'invalid',
+            },
+            tags: 'not-an-array',
+            metadata: {
+                createdBy: null,
+                items: 'not-an-array',
             },
         };
 
@@ -136,6 +183,11 @@ describe('buildValidationSchema', () => {
                 option: 'storing',
                 storage: 'storage-1',
             },
+            tags: ['tag1'],
+            metadata: {
+                createdBy: 'user1',
+                items: [{ id: 1 }],
+            },
         };
 
         // Arrange: prepare invalid 'storing' data (missing required 'storage')
@@ -150,6 +202,11 @@ describe('buildValidationSchema', () => {
             },
             storageDispatch: {
                 option: 'storing',
+            },
+            tags: ['tag1'],
+            metadata: {
+                createdBy: 'user1',
+                items: [{ id: 1 }],
             },
         };
 
@@ -215,6 +272,34 @@ const formValidation: FormValidation = {
                 then: {
                     type: 'string',
                     required: true,
+                },
+            },
+        },
+    },
+    tags: {
+        type: 'array',
+        of: {
+            type: 'string',
+        },
+    },
+    metadata: {
+        type: 'object',
+        shape: {
+            createdBy: {
+                type: 'string',
+                required: true,
+            },
+            items: {
+                type: 'array',
+                required: true,
+                of: {
+                    type: 'object',
+                    shape: {
+                        id: {
+                            type: 'number',
+                            required: true,
+                        },
+                    },
                 },
             },
         },

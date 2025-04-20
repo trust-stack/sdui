@@ -5,8 +5,33 @@
     "author": "",
     "private": true,
     "license": "UNLICENSED",
-    "main": "src/index.ts",
+    "main": "dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "bin": {
+        "sdui": "./dist/sdui.js"
+    },
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs"
+        },
+        "./cli": {
+            "types": "./dist/sdui.d.ts",
+            "require": "./dist/sdui.js"
+        }
+    },
+    "engines": {
+        "node": ">=20.0.0"
+    },
     "scripts": {
+        "build": "tsup src/index.ts --format cjs,esm --dts && pnpm build:cli",
+        "build:cli": "tsup bin/sdui.ts --format cjs --dts",
         "codegen:json-schema": "ts-node --project ./tsconfig.json -r tsconfig-paths/register ./scripts/codegen-json-schema.ts",
         "format": "prettier --write \"src/**/*.{ts,tsx}\"",
         "lint": "eslint \"{src,apps,libs,test}/**/*.{ts,tsx}\" --fix",
@@ -16,11 +41,17 @@
     "dependencies": {
         "@hookform/resolvers": "^3.3.4",
         "@truststack/ui-kit": "^0.3.0",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.14.1",
+        "commander": "^13.1.0",
+        "glob": "^11.0.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-hook-form": "^7.55.0",
+        "reflect-metadata": "^0.2.2",
         "tamagui": "1.125.17",
-        "yup": "^0.32.9"
+        "yup": "^0.32.9",
+        "zod": "^3.24.2"
     },
     "devDependencies": {
         "@storybook/addon-actions": "^8.3.5",
@@ -36,7 +67,7 @@
         "@storybook/test": "^8.6.12",
         "@tamagui/vite-plugin": "1.125.17",
         "@types/node": "^20.3.1",
-        "@types/react": "^19.1.0",
+        "@types/react": "^18.2.0",
         "@typescript-eslint/eslint-plugin": "^8.0.0",
         "@typescript-eslint/parser": "^8.0.0",
         "eslint": "^8.0.0",
@@ -45,17 +76,18 @@
         "json-schema-to-typescript": "^15.0.4",
         "prettier": "^3.0.0",
         "storybook": "^8.6.12",
+        "tamagui-loader": "1.125.17",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
+        "tsup": "^8.4.0",
         "typescript": "^5.1.3",
         "unplugin-swc": "^1.5.1",
-        "tamagui-loader": "1.125.32",
         "vite": "^6.2.6",
         "vitest": "^2.1.1"
     },
     "resolutions": {
-        "@tamagui/core": "1.125.32",
-        "@tamagui/web": "1.125.32",
+        "@tamagui/core": "1.125.17",
+        "@tamagui/web": "1.125.17",
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
         "react": "18.2.0",

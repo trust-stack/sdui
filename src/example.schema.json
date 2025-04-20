@@ -182,7 +182,8 @@
             "quantity": {
                 "type": "number",
                 "required": true,
-                "message": "Quantity is required"
+                "positive": true,
+                "message": "Quantity must be a positive whole number"
             }
         },
         "storageDispatch": {
@@ -212,6 +213,34 @@
                         "type": "string",
                         "required": true,
                         "message": "Trade partner is required"
+                    }
+                }
+            }
+        },
+        "tags": {
+            "type": "array",
+            "of": {
+                "type": "string"
+            }
+        },
+        "metadata": {
+            "type": "object",
+            "shape": {
+                "createdBy": {
+                    "type": "string",
+                    "required": true
+                },
+                "items": {
+                    "type": "array",
+                    "required": true,
+                    "of": {
+                        "type": "object",
+                        "shape": {
+                            "id": {
+                                "type": "number",
+                                "required": true
+                            }
+                        }
                     }
                 }
             }

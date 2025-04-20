@@ -1,0 +1,5 @@
+{
+  "schemas": [
+    "example/**/*.schema.json"
+  ]
+}

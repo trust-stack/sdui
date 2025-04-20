@@ -1,4 +1,5 @@
 # compiled output
+/dist
 /node_modules
 
 # tests
@@ -6,3 +7,6 @@
 
 # tamagui
 .tamagui/
+
+# SDUI Gen
+*.gen.ts
