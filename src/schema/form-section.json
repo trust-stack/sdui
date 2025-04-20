@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "validationId": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "items": {
+            "type": "array",
+            "items": {
+                "$ref": "form-item.json"
+            }
+        }
+    },
+    "required": ["validationId", "title", "items"]
+}

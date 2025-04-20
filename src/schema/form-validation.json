@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "patternProperties": {
+        ".*": {
+            "oneOf": [
+                {
+                    "$ref": "form-validation-field.json"
+                },
+                {
+                    "type": "object",
+                    "patternProperties": {
+                        ".*": {
+                            "$ref": "form-validation-field.json"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

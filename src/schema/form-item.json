@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "$ref": "form-item-type.json"
+        },
+        "validationId": {
+            "type": "string"
+        },
+        "subHeader": {
+            "type": "string"
+        },
+        "inputLabel": {
+            "type": "string"
+        },
+        "select": {
+            "$ref": "form-select.json"
+        },
+        "toggle": {
+            "$ref": "form-toggle.json"
+        },
+        "expanded": {
+            "type": "number",
+            "enum": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        },
+        "compact": {
+            "type": "number",
+            "enum": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        }
+    },
+    "required": ["type"]
+}

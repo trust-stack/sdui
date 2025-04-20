@@ -1,0 +1,62 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": ["array", "date", "mixed", "number", "object", "string"]
+        },
+        "required": {
+            "type": "boolean"
+        },
+        "message": {
+            "type": "string"
+        },
+        "min": {
+            "type": "number"
+        },
+        "max": {
+            "type": "number"
+        },
+        "oneOf": {
+            "type": "array",
+            "items": {
+                "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "object",
+                    "array",
+                    "null"
+                ]
+            }
+        },
+        "when": {
+            "type": "object",
+            "properties": {
+                "field": {
+                    "type": "string"
+                },
+                "is": {
+                    "type": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "object",
+                        "array",
+                        "null"
+                    ],
+                    "description": "Value to compare field against"
+                },
+                "then": {
+                    "$ref": "#"
+                },
+                "otherwise": {
+                    "$ref": "#"
+                }
+            },
+            "required": ["field", "is", "then"]
+        }
+    },
+    "required": ["type"]
+}
