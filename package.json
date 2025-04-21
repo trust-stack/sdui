@@ -3,6 +3,9 @@
     "version": "0.0.2",
     "description": "Schema-Driven UI",
     "type": "module",
+    "publishConfig": {
+        "access": "public"
+    },
     "exports": {
         "./package.json": "./package.json",
         ".": {
@@ -46,13 +49,14 @@
     "source": "src/index.tsx",
     "types": "./types/index.d.ts",
     "scripts": {
-        "build:cli": "tsup bin/sdui.ts --format cjs --dts",
         "build": "tamagui-build",
+        "build:cli": "tsup bin/sdui.ts --format cjs --dts",
         "changeset": "changeset",
         "clean": "tamagui-build clean",
         "codegen:json-schema": "ts-node --project ./tsconfig.json -r tsconfig-paths/register ./scripts/codegen-json-schema.ts",
         "format": "prettier --write \"src/**/*.{ts,tsx}\"",
         "lint": "eslint \"{src,apps,libs,test}/**/*.{ts,tsx}\" --fix",
+        "release": "pnpm build && changeset publish",
         "storybook": "storybook dev -p 6006 --no-open",
         "test": "vitest",
         "watch": "tamagui-build --watch"
