@@ -3,6 +3,9 @@
     "version": "0.0.2",
     "description": "Schema-Driven UI",
     "type": "module",
+    "publishConfig": {
+        "access": "public"
+    },
     "exports": {
         "./package.json": "./package.json",
         ".": {
