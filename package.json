@@ -1,46 +1,73 @@
 {
-    "name": "sdui",
+    "name": "@truststack/sdui",
     "version": "0.0.1",
-    "description": "Server-Driven UI",
-    "author": "",
-    "private": true,
-    "license": "UNLICENSED",
-    "main": "dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "dist/index.d.ts",
-    "bin": {
-        "sdui": "./dist/sdui.js"
-    },
-    "files": [
-        "dist",
-        "README.md"
-    ],
+    "description": "Schema-Driven UI",
+    "type": "module",
     "exports": {
+        "./package.json": "./package.json",
         ".": {
-            "types": "./dist/index.d.ts",
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
+            "react-native": {
+                "import": "./dist/esm/index.native.js",
+                "require": "./dist/cjs/index.native.js"
+            },
+            "types": "./types/index.d.ts",
+            "import": "./dist/esm/index.mjs",
+            "require": "./dist/cjs/index.cjs",
+            "default": "./dist/cjs/index.native.js"
         },
-        "./cli": {
-            "types": "./dist/sdui.d.ts",
-            "require": "./dist/sdui.js"
+        "./react-native-web": {
+            "react-native": "./dist/cjs/react-native-web.native.js",
+            "types": "./types/index.d.ts",
+            "import": "./dist/esm/react-native-web.mjs",
+            "require": "./dist/cjs/react-native-web.cjs"
+        },
+        "./web": {
+            "react-native": {
+                "import": "./dist/esm/index.native.js",
+                "require": "./dist/cjs/index.native.js"
+            },
+            "types": "./types/index.d.ts",
+            "import": "./dist/esm/index.mjs",
+            "require": "./dist/cjs/index.cjs"
+        },
+        "./native": {
+            "types": "./types/index.d.ts",
+            "require": "./dist/native.js",
+            "react-native": "./dist/native.native.js"
+        },
+        "./native-test": {
+            "types": "./types/index.d.ts",
+            "require": "./dist/test.cjs",
+            "react-native": "./dist/test.native.js"
         }
     },
-    "engines": {
-        "node": ">=20.0.0"
-    },
+    "main": "dist/cjs",
+    "module": "dist/esm",
+    "source": "src/index.tsx",
+    "types": "./types/index.d.ts",
     "scripts": {
-        "build": "tsup src/index.ts --format cjs,esm --dts && pnpm build:cli",
         "build:cli": "tsup bin/sdui.ts --format cjs --dts",
+        "build": "tamagui-build",
+        "changeset": "changeset",
+        "clean": "tamagui-build clean",
         "codegen:json-schema": "ts-node --project ./tsconfig.json -r tsconfig-paths/register ./scripts/codegen-json-schema.ts",
         "format": "prettier --write \"src/**/*.{ts,tsx}\"",
         "lint": "eslint \"{src,apps,libs,test}/**/*.{ts,tsx}\" --fix",
         "storybook": "storybook dev -p 6006 --no-open",
-        "test": "vitest"
+        "test": "vitest",
+        "watch": "tamagui-build --watch"
+    },
+    "resolutions": {
+        "@tamagui/core": "1.125.17",
+        "@tamagui/web": "1.125.17",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "react": "18.2.0",
+        "react-dom": "18.2.0"
     },
     "dependencies": {
         "@hookform/resolvers": "^3.3.4",
-        "@truststack/ui-kit": "^0.3.0",
+        "@truststack/ui-kit": "^0.4.1",
         "class-transformer": "^0.5.1",
         "class-validator": "^0.14.1",
         "commander": "^13.1.0",
@@ -54,6 +81,7 @@
         "zod": "^3.24.2"
     },
     "devDependencies": {
+        "@changesets/cli": "^2.27.11",
         "@storybook/addon-actions": "^8.3.5",
         "@storybook/addon-essentials": "^8.6.12",
         "@storybook/addon-interactions": "^8.3.5",
@@ -65,6 +93,7 @@
         "@storybook/react": "^8.6.12",
         "@storybook/react-vite": "^8.6.12",
         "@storybook/test": "^8.6.12",
+        "@tamagui/build": "1.125.17",
         "@tamagui/vite-plugin": "1.125.17",
         "@types/node": "^20.3.1",
         "@types/react": "^18.2.0",
@@ -85,12 +114,14 @@
         "vite": "^6.2.6",
         "vitest": "^2.1.1"
     },
-    "resolutions": {
-        "@tamagui/core": "1.125.17",
-        "@tamagui/web": "1.125.17",
-        "@types/react": "^18.2.0",
-        "@types/react-dom": "^18.2.0",
-        "react": "18.2.0",
-        "react-dom": "18.2.0"
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "removeSideEffects": "true",
+    "tamagui": {
+        "build": {
+            "bundle.native": "./src/index.ts",
+            "bundle.native.test": "./src/index.ts"
+        }
     }
 }
