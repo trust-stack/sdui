@@ -1,0 +1,1 @@
+{"version":3,"file":"FormContentBuilder.d.ts","sourceRoot":"","sources":["../../src/ui/FormContentBuilder.tsx"],"names":[],"mappings":"AAaA,OAAO,EAAE,WAAW,EAAkB,MAAM,iBAAiB,CAAC;AAC9D,OAAO,EAAE,QAAQ,EAA+B,MAAM,sBAAsB,CAAC;AAE7E,KAAK,uBAAuB,GAAG;IAC3B,QAAQ,CAAC,KAAK,EAAE,QAAQ,EAAE,CAAC;CAC9B,CAAC;AAEF,wBAAgB,kBAAkB,CAAC,WAAW,SAAS,WAAW,EAAE,EAChE,KAAK,GACR,EAAE,uBAAuB,2CAqEzB"}
